@@ -9,4 +9,4 @@ cards_columns = 2
 card_media_height = 300
 +++
 
-Explore Wawona in action. Native Wayland compositing on macOS, showing off the seamless integration and high-performance rendering.
+Explore Wawona in action. Native Wayland compositing on many systems.

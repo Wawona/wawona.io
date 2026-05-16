@@ -1,13 +1,13 @@
 +++
-title = "High Resolution Rendering"
+title = "Android support"
 date = 2026-02-23
-description = "Showing off Wawona's support for Retina and high-resolution displays."
+description = "Showing off Wawona's Android client on an emulator"
 
 [extra]
-local_image = "/images/wawona-screenshots/wawona-screenshot-1.png"
+local_image = "/images/wawona-screenshots/android-emu-screenshot.png"
 +++
 
-Wawona supports native scaling for high-density displays, ensuring your Wayland apps look as sharp as native macOS applications.
+Wawona supports Android devices.
 
-{{ screenshot(src="/images/wawona-screenshots/wawona-screenshot-1.png", caption="High-resolution rendering on a Retina display.") }}
+{{ screenshot(src="/images/wawona-screenshots/android-emu-screenshot.png", caption="Wawona Android running in an emulator") }}
 
