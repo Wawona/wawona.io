@@ -1,5 +1,5 @@
 +++
-title = "Android support"
+title = "Android Support"
 date = 2026-02-23
 description = "Showing off Wawona's Android client on an emulator"
 
