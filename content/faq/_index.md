@@ -296,16 +296,21 @@ We're working on it! Pre-built binaries are planned but not available yet. Here'
 | Platform | Format | Status |
 |----------|--------|--------|
 | macOS | `.dmg` | Planned — needs code signing + notarization |
-| iOS | TestFlight `.ipa` | Planned — setting up Fastlane for beta distribution |
-| Android | `.apk` | Planned — needs signing key + Play Store or direct download |
+| iOS | TestFlight `.ipa` | **v0.2.4** — Fastlane + `release-beta` workflow (requires secrets + match) |
+| Android | `.aab` / `.apk` | **v0.2.4** — Fastlane Play internal track via `wawona-android-aab` |
 
-**Why not yet?**
+**Status (v0.2.4):**
 
-1. **Code signing** — Apple requires a paid Developer Program enrollment ($99/year) for distributing .app and .ipa files. We're a student-funded project
-2. **Fastlane setup** — We're planning to integrate [Fastlane](https://fastlane.tools/) for automated TestFlight and Play Store deployment, but the CI/CD pipeline isn't configured yet
-3. **Rapid development** — Wawona is still in active development (v0.2.2). Building from source ensures you always get the latest version with all protocol improvements
+1. **Fastlane** — Lanes in `fastlane/`, CI workflow `.github/workflows/release-beta.yml`, GitHub Environment `release-beta`
+2. **Apple signing** — Private `aspauldingcode/apple-signing` repo via fastlane match; bootstrap with `./scripts/bootstrap-apple-signing.sh`
+3. **Secrets** — `./scripts/sync-github-secrets.sh` pushes to `Wawona/Wawona` via `gh` CLI
 
-**For now:** `nix run` is the fastest way to build and launch. Once Fastlane is configured, beta testers will be able to install directly via TestFlight (iOS) or sideload an APK (Android).
+**For developers:** `nix run` remains the fastest local path. After secrets are configured, beta testers can install via TestFlight (Apple platforms except macOS) or Play internal track (Android).
+
+**Previously (pre-0.2.4):**
+
+1. **Code signing** — Apple Developer Program enrollment required for distribution
+2. **Rapid development** — Wawona is still in active development (v0.2.4). Building from source ensures latest protocol improvements
 
 </div>
 </details>
