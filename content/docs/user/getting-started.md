@@ -29,7 +29,7 @@ macOS is not a store feature target. Do not wait for a Mac store listing.
 
 Open Wawona. Create or pick a **Machine**. Start it. Use **Focus** to show the compositor.
 
-Before tapping Weston panel icons or nested clients, set **Touch Input Type** to Multi-Touch (iOS family) or turn **Touchpad Mode** off (Android). See [Usage](@/docs/user/usage.md).
+Before tapping Weston panel icons or nested clients, set **Touch Input Type** to Multi-Touch (iOS family) or turn **Touchpad Mode** off (Android). See [Usage](@/docs/user/usage.md). Typing follows the host keyboard and IME. There is no layout picker. See [Keyboard and IME](@/docs/user/keyboard.md).
 
 ## Extra software
 

@@ -1,9 +1,9 @@
 +++
 aliases = ["docs/vms", "docs/containers"]
 title = "VMs and containers"
-description = "Planned Machines kinds. Mode A jitless on store iOS; Mode B JIT via TrollStore or Sileo."
+description = "Planned Machines kinds. Relay engine. Mode A StaticCpu on store iOS; Mode B may use Hypervisor.framework inside the UTM-era window."
 weight = 3
-date = 2026-08-16
+date = 2026-09-11
 
 +++
 
@@ -11,31 +11,38 @@ date = 2026-08-16
 
 Read [Mode A and Mode B](@/docs/user/mode-a-b.md) first (App Store vs TrollStore vs Sileo).
 
-## iOS / iPadOS / visionOS
+Engine: **[Wawona Relay](https://github.com/Wawona/Relay)**. Not QEMU. Not UTM as the product VM. Guest GUI is Wayland into Wawona (iland) over vsock + waypipe. You may still run a third-party UTM guest and connect with SSH + waypipe; that is not the Wawona Machines engine.
+
+## iOS / iPadOS
 
 | Channel | Engine |
 |-------|--------|
-| **App Store** (Mode A) | **Jitless** QEMU-TCTI / TCG interpreter for VMs; containers run **inside** that VM after OCI pull |
-| **TrollStore** (JIT IPA) | **JIT** QEMU/UTM for VMs and containers (Wasm JIT allowed). Not Desktop/Swinging Bridge by itself |
-| **Sileo** ([repo.wawona.io](https://repo.wawona.io)) | Same **JIT** engines **plus** Desktop, LockScreen, and Swinging Bridge Mode B out of the box |
+| **App Store** (Mode A) | Relay **StaticCpu** (jitless). Planned. Fail closed. **No** Hypervisor.framework |
+| **TrollStore** (Mode B tipa) | Same Relay. **`IosHv`** when SoC + OS + kernel probe pass (M1 / M2 / A16 on ≤16.3.1). Else StaticCpu. No Swinging Bridge by tipa alone |
+| **Sileo** ([repo.wawona.io](https://repo.wawona.io)) | Same Relay HV window **plus** Desktop, LockScreen, Swinging Bridge Mode B |
 
-Mode B is never shipped inside the App Store app. Store / TestFlight copy must not mention jailbreak, TrollStore, or JIT. This page may.
+Mode B is never shipped inside the App Store app. Store / TestFlight copy must not mention jailbreak, TrollStore, Hypervisor, or JIT. This page may.
+
+Wasm stays `/wasm/v1` bytecode (Pulley on Apple mobile). MAP_JIT wasm is not Hypervisor.framework.
+
+Canonical HV plan: [relay-ios-hypervisor.md](https://github.com/Wawona/Wawona/blob/development/docs/relay-ios-hypervisor.md).
 
 ## Platforms
 
 | Platform | Gate | Path |
 |----------|------|------|
-| macOS | planned | QEMU + HVF (`Hypervisor.framework`) + Apple [Containerization](https://github.com/apple/container) |
-| iOS / iPadOS / visionOS | planned | Mode A jitless / Mode B JIT (above) |
-| Android | planned | QEMU + KVM when available, else TCG+JIT (`wwn-vms` / `wwn-containers`) |
-| Linux | planned | Same |
-| tvOS / watchOS | forbidden | Native + remote only |
+| macOS | planned | **Virtualization.framework** + Apple [Containerization](https://github.com/apple/container). macOS HV is lab-only, not the product VM |
+| iOS / iPadOS | planned | Relay StaticCpu (Mode A). Mode B may use Hypervisor.framework inside the window above |
+| visionOS | **forbidden** | Native + remote + Wasm only. No VM/container kinds |
+| Android | planned | Relay. Play = Mode A. Root = Mode B |
+| Linux | planned | KVM via cloud-hypervisor or crosvm. Fail closed without `/dev/kvm` |
+| tvOS / watchOS | **forbidden** | Native + remote only |
 
 ## Machine kinds
 
 | `type` | Meaning |
 |--------|---------|
-| `virtual_machine` | Guest VM (`wwn-vms`) |
-| `container` | OCI runtime (`wwn-containers`) |
+| `virtual_machine` | Linux / NixOS guest via Relay |
+| `container` | OCI unpack, then the same Linux VM backend |
 
 Repo: [vms-containers.md](https://github.com/Wawona/Wawona/blob/development/docs/vms-containers.md).

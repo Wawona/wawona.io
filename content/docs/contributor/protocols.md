@@ -24,6 +24,9 @@ Status (Functional / Partial / Stub) is a catalog field, not inferred from the r
 
 Profiles: `store-safe`, `store-safe-remote`, `desktop-host`, `full-dev`. Plasma and other desktop-only globals follow `ProtocolProfile`.
 
+Typing / IME on Apple and Android is the host keymap bridge (`wl_keyboard` +
+`zwp_text_input_v3`). See [Keyboard and IME](@/docs/user/keyboard.md).
+
 This generation advertised **72** globals.
 
 ## Core
@@ -108,7 +111,7 @@ This generation advertised **72** globals.
 | `zwp_relative_pointer_manager_v1` | 1 | ext / wayland-protocols | `src/core/wayland/ext/relative_pointer.rs` | Stub | [wayland.app](https://wayland.app/protocols/relative-pointer-unstable-v1#zwp_relative_pointer_manager_v1) |
 | `zwp_tablet_manager_v2` | 1 | ext / wayland-protocols | `src/core/wayland/ext/tablet.rs` | Stub | [wayland.app](https://wayland.app/protocols/tablet-v2#zwp_tablet_manager_v2) |
 | `zwp_text_input_manager_v1` | 1 | ext / wayland-protocols | `src/core/wayland/ext/text_input.rs` | Stub | [wayland.app](https://wayland.app/protocols/text-input-unstable-v1#zwp_text_input_manager_v1) |
-| `zwp_text_input_manager_v3` | 1 | ext / wayland-protocols | `src/core/wayland/ext/text_input.rs` | Stub | [wayland.app](https://wayland.app/protocols/text-input-unstable-v3#zwp_text_input_manager_v3) |
+| `zwp_text_input_manager_v3` | 1 | ext / wayland-protocols | `src/core/wayland/ext/text_input.rs` | Partial | [wayland.app](https://wayland.app/protocols/text-input-unstable-v3#zwp_text_input_manager_v3) |
 | `zwp_xwayland_keyboard_grab_manager_v1` | 1 | ext / wayland-protocols | `src/core/wayland/ext/xwayland_keyboard_grab.rs` | Stub | [wayland.app](https://wayland.app/protocols/xwayland-keyboard-grab-unstable-v1#zwp_xwayland_keyboard_grab_manager_v1) |
 
 ## KDE / Plasma

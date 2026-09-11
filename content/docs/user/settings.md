@@ -60,11 +60,14 @@ platform's list.
 
 | Setting | Notes |
 |---------|--------|
-| Touch Input Type | Multi-Touch vs Touchpad (iOS family) |
+| Touch Input Type | Multi-Touch vs Touchpad (iOS family). Not a keyboard layout. |
 | Touchpad Mode | Android; Off for client taps |
 | Text Assist | `enableTextAssist`. iOS still reads it. |
 | Dictation | Android |
 | Shake / swipe / long-press Menu | Exit the active machine (platform-specific) |
+
+There is no Settings keyboard-layout picker. Typing follows the host IME.
+See [Keyboard and IME](@/docs/user/keyboard.md).
 
 ## Desktop and Wawona Swinging Bridge
 

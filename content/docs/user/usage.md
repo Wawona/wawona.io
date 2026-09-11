@@ -28,6 +28,8 @@ Wayland clients (Weston panel, nested compositors, terminals) need **direct touc
 
 `click` with a virtual pointer often no-ops even when the tool reports success.
 
+Typing itself is the host IME, not a Wawona layout. See [Keyboard and IME](@/docs/user/keyboard.md).
+
 ## Linux host
 
 ```bash
