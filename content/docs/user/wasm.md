@@ -24,6 +24,13 @@ There is **no Mode B package channel** for Wasm. App Store / Play extra software
 
 Milestone: [Support WASI P1 P2 WASM!](https://github.com/Wawona/Wawona/milestone/2). Engineering: [wasm-wasi.md](https://github.com/Wawona/Wawona/blob/development/docs/wasm-wasi.md), [wasm-package-manager.md](https://github.com/Wawona/Wawona/blob/development/docs/wasm-package-manager.md).
 
+## Planned: curated Wasmer / WebC registry
+
+A later change makes `repo.wawona.io/wasm` a curated Wasmer-compatible registry
+(WebC via wasinix, ABI labels WASI P1 / P2 / WASIX). Not shipping yet. Today
+`wpm` still uses `/wasm/v1` bytecode. Engineering:
+[wasm-abi.md](https://github.com/Wawona/repo.wawona.io/blob/development/docs/wasm-abi.md).
+
 ## On device
 
 1. Browse the catalog at [`repo.wawona.io/search/?channel=wasm`](https://repo.wawona.io/search/?channel=wasm), or follow [Packages](@/docs/user/packages.md). Put `tool.wasm` in the Wawona Documents folder (Files.app, iTunes File Sharing, or `scp`), **or** install with `wpm`.
