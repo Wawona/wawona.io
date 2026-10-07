@@ -9,6 +9,23 @@ date = 2026-08-13
 
 Canonical keys live in the [Wawona settings doc](https://github.com/Wawona/Wawona/blob/development/docs/settings.md). Machine overrides beat globals.
 
+## Where to find Settings
+
+Global Wawona Settings live in **exactly one place** per platform. Prefer the
+OS Settings app when that host exists. The app does not also show a full
+duplicate Global Settings screen on those platforms.
+
+| Platform | Where |
+|----------|--------|
+| macOS | System Settings → Wawona |
+| iPhone / iPad | Settings → Apps → Wawona |
+| Apple Watch | iPhone Watch app → My Watch → Wawona |
+| Apple TV / Vision Pro | Inside the Wawona app |
+| Android | Inside the Wawona app (also App Info → Preferences) |
+
+Machine editors, About, and Dependencies stay in the app. They do not
+re-host the same Display / Input toggles.
+
 A Settings row is a one-line title plus On/Off, a title plus the current
 choice, or a title plus the current value (short values on the trailing
 edge, longer copy wraps). Never a placeholder ellipsis. Never two helper

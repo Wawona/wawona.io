@@ -16,11 +16,14 @@ Wawona is an L4 app: a Rust Wayland compositor plus native frontends. It does no
 | Path | Owns |
 |------|------|
 | `src/core` | Protocols, surfaces, windows, input, scene |
-| `src/ffi` | UniFFI + C API (still used; not the only bridge) |
-| `src/platform/*` | ObjC / JNI / GTK glue |
+| `src/ffi` | UniFFI + `WWNCore*` C poll ABI (Swift/JNI call it) |
+| `src/platform/android` | JNI glue |
+| `src/linux` | GTK UI |
 | `Sources/WawonaModel` | Shared Swift model |
-| `Sources/WawonaUI` | SwiftUI Machines / Welcome |
+| `Sources/WawonaUI` | SwiftUI Machines / Welcome / Settings |
 | `Sources/WawonaWatch` | watchOS companion |
+| `Sources/WawonaApple` | Apple framework glue (Metal, seat, lifecycle, runners). No ObjC classes |
+| `Darwin/` | Apple `@main` entry |
 
 Layout rules: [2026-SOURCE-LAYOUT-RULES.md](https://github.com/Wawona/Wawona/blob/development/docs/2026-SOURCE-LAYOUT-RULES.md).
 

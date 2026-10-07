@@ -221,6 +221,37 @@ A Machine is a saved session in the Machines window. Kinds: `native`, `ssh_waypi
 
 </div>
 </details>
+<details id="ios-supported-versions">
+<summary>
+    Which iPhone and iPad versions can run Wawona?
+    <button type="button" class="faq-share" data-faq-id="ios-supported-versions" title="Copy link to this question" aria-label="Copy link to this question">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+        <span class="faq-share-label">Link</span>
+    </button>
+</summary>
+<div class="faq-answer">
+
+Wawona's iOS product starts at **iOS 11**. iPadOS is a separate product that
+starts at **iPadOS 13**. An iPad on iOS 11 or 12 uses the shared iOS UIKit IPA
+or Sileo package. The privileged products have separate floors: the TrollStore
+`.tipa` starts at **iOS 14**, while the jailbroken **Sileo `.deb`** from
+[repo.wawona.io](https://repo.wawona.io) starts at **iOS 11**.
+
+| iOS version | Mode A normal IPA | TrollStore `.tipa` | Sileo jailbroken `.deb` |
+|---:|---|---|---|
+| 11-13 | Available | Not available | Available |
+| 14-16 | Available | Available | Available |
+| 17 | Available | 17.0 only | Available where jailbroken |
+| 18 | Available | Not a permanent-signing target | Available where jailbroken |
+| 26 | Available | TrollStore Lite lab only on jailbroken iOS | Available where jailbroken |
+
+All three use the current iPhoneOS SDK. iOS 11 and 12 use Wawona's UIKit
+Machines screen because SwiftUI begins at iOS 13. “Available where jailbroken”
+does not promise a jailbreak for every device or point release. See
+[Mode A and Mode B](/docs/mode-a-b/) for the full channel matrix.
+
+</div>
+</details>
 <details id="platforms-gates">
 <summary>
     What platforms are available, planned, blocked, or forbidden?

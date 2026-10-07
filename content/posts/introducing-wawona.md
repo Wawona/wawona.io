@@ -17,7 +17,7 @@ On a Mac, the usual way to run Wayland apps was a virtual machine or a slow emul
 
 ### Rust core
 
-One backend owns protocol state, surfaces, and input. Host UI is SwiftUI/ObjC, JNI/Compose, or GTK. UniFFI exists in `src/ffi`. It is not the only bridge.
+One backend owns protocol state, surfaces, and input. Host UI is Swift/SwiftUI, JNI/Compose, or GTK. UniFFI covers the product domain. The compositor poll bridge stays `WWNCore*` C ABI called from Swift or JNI.
 
 ### Native graphics
 

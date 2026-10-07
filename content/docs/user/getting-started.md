@@ -43,7 +43,7 @@ See [Packages](@/docs/user/packages.md).
 
 ## Build from source
 
-Contributors: [Compilation](@/docs/contributor/compilation.md), [Nix](@/docs/contributor/nix-build-system.md), and [AI + MCP](@/docs/contributor/wwn-mcp.md) (wire `wwn-mcp` so agents retrieve Wawona knowledge). You need Determinate Nix, Xcode on Apple, and `TEAM_ID` in `.envrc` for signed iOS family builds.
+Contributors: [Compilation](@/docs/contributor/compilation.md), [Nix](@/docs/contributor/nix-build-system.md), [reproducible direnv + Nix](@/docs/contributor/direnv-nix.md), and [AI + MCP](@/docs/contributor/wwn-mcp.md). You need Nix, Xcode on Apple, and local signing inputs in ignored `.envrc.local` for signed iOS family builds.
 
 ```bash
 nix run .#wawona-macos

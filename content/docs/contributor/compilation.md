@@ -50,7 +50,7 @@ On `Wawona-macOS` that includes:
 | Bundle Executables | Copy and sign helpers from the Nix store into the app |
 | Strip iOS-only keys from Info.plist (#138) | Drop iOS keys after plist processing so a macOS archive is not treated as iOS |
 
-Swift and ObjC compile can still be incremental. These shell phases still fire.
+Swift compile can still be incremental. These shell phases still fire.
 Nix cache (and `WAWONA_BACKEND_OUT*` copy, or `WAWONA_SKIP_NIX_PREBUILD=1` for
 UI-only iteration) is what keeps the Rust step cheap when the store is warm.
 
