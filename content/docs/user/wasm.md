@@ -22,7 +22,9 @@ There is **no Mode B package channel** for Wasm. App Store / Play extra software
 
 **Mode B IPAs** ([TrollStore](@/docs/user/mode-a-b.md) or Sileo) may **JIT-execute** the same `/wasm/` packages when the JIT entitlement is present. That is an execute backend on the Mode B IPA, not a second registry. App Store builds stay interpreter-only (no Wasm JIT).
 
-Milestone: [Support WASI P1 P2 WASM!](https://github.com/Wawona/Wawona/milestone/2). Engineering: [wasm-wasi.md](https://github.com/Wawona/Wawona/blob/development/docs/wasm-wasi.md), [wasm-package-manager.md](https://github.com/Wawona/Wawona/blob/development/docs/wasm-package-manager.md).
+Milestone: [Support WASI P1 P2 WASM!](https://github.com/Wawona/Wawona/milestone/2).
+Developers: [Wasm host ABI](@/docs/contributor/wasm-host-abi.md),
+[Wayland wasm](@/docs/contributor/wayland-wasm.md).
 
 ## Package builds and planned Wasmer / WebC
 
@@ -58,14 +60,15 @@ GOOS=wasip1 GOARCH=wasm go build -o tool.wasm
 # see examples/wayland-shm/swift/build.sh
 ```
 
-**Wayland client** (Rust, Go, or Swift. Same `wl_shm` + xdg window):
+**Wayland client** (Rust, Go, or Swift. Same `wl_shm` + xdg window): see
+[Wayland wasm](@/docs/contributor/wayland-wasm.md).
 
 ```bash
-cd examples/wayland-shm
+cd Relay/import/wasm/examples/wayland-shm
 ./rust/build.sh    # or ./go/build.sh or ./swift/build.sh
 ```
 
-Demos: [`wwn-wasm/examples`](https://github.com/Wawona/wwn-wasm/tree/development/examples).
+Demos: [`Relay/import/wasm/examples`](https://github.com/Wawona/Relay/tree/development/import/wasm/examples).
 
 ## Package manager (`wpm`)
 
@@ -73,4 +76,6 @@ Demos: [`wwn-wasm/examples`](https://github.com/Wawona/wwn-wasm/tree/development
 
 See [Mode A and Mode B](@/docs/user/mode-a-b.md) and [wasm-package-manager.md](https://github.com/Wawona/Wawona/blob/development/docs/wasm-package-manager.md).
 
-watchOS keeps the runtime off (size). macOS may use Cranelift. Native ports stay first-class whenever we have one.
+Relay Wasm ships on every product target, including watchOS (`hello-wasi-gui`
+via `wl_shm` + SpriteKit). macOS may use Cranelift. Native ports stay
+first-class whenever we have one.
