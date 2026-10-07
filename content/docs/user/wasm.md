@@ -24,11 +24,12 @@ There is **no Mode B package channel** for Wasm. App Store / Play extra software
 
 Milestone: [Support WASI P1 P2 WASM!](https://github.com/Wawona/Wawona/milestone/2). Engineering: [wasm-wasi.md](https://github.com/Wawona/Wawona/blob/development/docs/wasm-wasi.md), [wasm-package-manager.md](https://github.com/Wawona/Wawona/blob/development/docs/wasm-package-manager.md).
 
-## Planned: curated Wasmer / WebC registry
+## Package builds and planned Wasmer / WebC
 
-A later change makes `repo.wawona.io/wasm` a curated Wasmer-compatible registry
-(WebC via wasinix, ABI labels WASI P1 / P2 / WASIX). Not shipping yet. Today
-`wpm` still uses `/wasm/v1` bytecode. Engineering:
+WASI P1 packages for the catalog build on GitHub Actions in
+[`Wawona/wasm-packages`](https://github.com/Wawona/wasm-packages) (not on a
+laptop). `wpm` still installs `/wasm/v1` bytecode. A later change adds
+Wasmer/WebC via wasinix (ABI P1 / P2 / WASIX). Engineering:
 [wasm-abi.md](https://github.com/Wawona/repo.wawona.io/blob/development/docs/wasm-abi.md).
 
 ## On device
