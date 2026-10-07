@@ -200,6 +200,7 @@ Swift: `@_extern(wasm, module: "wawona_socket", name: "wawona_wayland_connect")`
 | CLI + sockets | `Relay/import/wasm/examples/rust` |
 | Wayland SHM interactive | `Relay/import/wasm/examples/wayland-shm` |
 | Minimal GUI smoke | `Relay/import/wasm/examples/hello-wasi-gui` |
+| Catalog Wayland app | [`chess-wawona`](https://repo.wawona.io/search/?channel=wasm&query=chess-wawona) ([guide](@/docs/contributor/wayland-wasm.md)) |
 | WASI P2 | `Relay/import/wasm/examples/wasip2` (standard `wasi:*`, not this host ABI) |
 
 ## C host entry (native side)

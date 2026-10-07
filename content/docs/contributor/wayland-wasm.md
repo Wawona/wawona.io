@@ -62,6 +62,7 @@ helper. Protocol detail:
 |------|---------|-------|
 | Smallest GUI smoke | [`hello-wasi-gui`](https://github.com/Wawona/Relay/tree/development/import/wasm/examples/hello-wasi-gui) | One buffer. Bundled on every product target |
 | Interactive SHM | [`wayland-shm`](https://github.com/Wawona/Relay/tree/development/import/wasm/examples/wayland-shm) | Seat, resize, checkbox, typing. Rust / Go / Swift |
+| Full Wayland app (catalog) | [`chess-wawona`](https://repo.wawona.io/search/?channel=wasm&query=chess-wawona) | Chess + variants; see showcase below |
 | CLI + TCP | [`examples/rust`](https://github.com/Wawona/Relay/tree/development/import/wasm/examples/rust) | Sockets only |
 
 ```bash
@@ -79,6 +80,43 @@ wasm hello-wasi-gui
 rustup target add wasm32-wasip1
 cargo build --target wasm32-wasip1 --release
 ```
+
+## Showcase: `chess-wawona`
+
+Published Mode A package on
+[`repo.wawona.io/wasm/v1`](https://repo.wawona.io/search/?channel=wasm&query=chess-wawona).
+Source: [`chess-for-linux/wasm`](https://github.com/cube-one-ber/chess-for-linux/tree/main/wasm)
+(GPL-3.0-or-later). Same rules/engine Rust as the native Linux app; the wasm
+frontend is a **real Wayland client** (`wl_compositor`, `wl_shm`, `xdg_wm_base`,
+`wl_seat`). No Qt, no browser. Optional `wawona_vk_*` host imports can paint the
+Wood 3D scene when present; pixels still leave through `wl_shm`. Without those
+imports, the software 2D board runs.
+
+In a Wawona shell with a live compositor:
+
+```text
+wpm install chess-wawona
+wasm chess-wawona
+```
+
+Controls (2D path): click/tap piece then destination; type UCI/SAN and Enter;
+Crazyhouse drops like `N@e4`; on-screen New / Undo / Redo / AI / Variant
+(Standard, Crazyhouse, Suicide, Losers). No file save or network in this build.
+
+Build from source (developers):
+
+```bash
+git clone https://github.com/cube-one-ber/chess-for-linux
+cd chess-for-linux
+rustup target add wasm32-wasip1
+./scripts/build-wasm.sh
+# → artifacts/wasm/packages/chess-wawona/<version>/component.wasm
+wasm ./artifacts/wasm/packages/chess-wawona/*/component.wasm
+```
+
+Use this as the reference for a non-trivial Wayland wasm app: host ABI for
+connect + SHM + seat traffic, catalog `kind: wayland`, honest package version,
+and [port fidelity](@/docs/contributor/porting.md) against the Linux client.
 
 ## Publishing to the catalog
 

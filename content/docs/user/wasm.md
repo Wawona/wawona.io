@@ -46,6 +46,20 @@ wasm ./tool.wasm hello
 ./tool.wasm hello
 ```
 
+### Example: Chess (`chess-wawona`)
+
+A full Wayland app from the catalog: 2D board, pointer/touch, typed moves, four
+variants, and a Rust engine. Start a machine (so `WAYLAND_DISPLAY` is live), then:
+
+```text
+wpm install chess-wawona
+wasm chess-wawona
+```
+
+Catalog entry:
+[`chess-wawona`](https://repo.wawona.io/search/?channel=wasm&query=chess-wawona).
+How it is built (developers): [Wayland wasm](@/docs/contributor/wayland-wasm.md).
+
 ## Compile (no Nix)
 
 ```bash
