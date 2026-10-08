@@ -1,7 +1,7 @@
 +++
 aliases = ["docs/artcraft-wasm", "docs/artcraft-crafting-apps"]
 title = "ArtCraft wasm packages"
-description = "Map ArtCraft Crafting Apps to Wawona /wasm/v1. Browser web is wrong ABI; pilot is EffectCraft expr WASI."
+description = "Map ArtCraft Crafting Apps to Wawona /wasm/v1. Browser web is wrong ABI; no Craft packages published until Wayland."
 weight = 30
 date = 2026-10-08
 +++
@@ -25,30 +25,23 @@ Full matrix and crate inventory live in
 Do not publish `*_bg.wasm` + JS as `component.wasm`. Hosting a static web dist
 elsewhere is fine; it is not today’s `wpm` catalog.
 
-## Pilot
+## Catalog status
 
-| Catalog id | Upstream | Version | What it is |
-|------------|----------|---------|------------|
-| [`effectcraft-expr`](https://repo.wawona.io/search/?channel=wasm&query=effectcraft-expr) | [storytold/effectcraft](https://github.com/storytold/effectcraft) v0.6.0 | `0.6.0` | WASI CLI: expression `check_syntax` only |
+**No ArtCraft / EffectCraft packages are published on `/wasm/v1` right now.**
+The short-lived `effectcraft-expr` CLI slice was **pulled** until there is a
+real **egui → Wayland** path (`wl_shm` baseline; GPU WSI later). A
+`check_syntax` WASI binary is not the Crafting Apps product.
 
-```text
-wpm install effectcraft-expr
-wasm effectcraft-expr '1+1'
-# ok
-```
-
-This is **not** browser parity, not the full EffectCraft GUI, and not
-`effectcraft-cli` (still blocked: ui-egui/gpu). Full GUI needs a real Wayland
-or software path, not `xtask web` reuse.
+Republish only after a shared wasip1 Wayland runner exists and at least one
+Craft app speaks it.
 
 ## Fan-out
 
-Other Crafting Apps (`photocraft`, `vectorcraft`, …) and `effectcraft` /
-`effectcraft-cli` stay **blocked** in the wasm-packages allowlist until each
-has a green wasip1 recipe. `craft-fonts` is fonts only (asset dep, not a Runtime
-package). Builds run on GitHub Actions in
-[`Wawona/wasm-packages`](https://github.com/Wawona/wasm-packages), not laptop
-blobs.
+All Crafting Apps (`effectcraft`, `photocraft`, …), `effectcraft-cli`, and
+`effectcraft-expr` stay **blocked** (and pruned from the live index) in the
+wasm-packages allowlist. `craft-fonts` is fonts only. Builds run on GitHub
+Actions in [`Wawona/wasm-packages`](https://github.com/Wawona/wasm-packages),
+not laptop blobs.
 
 ## Related
 

@@ -24,8 +24,9 @@ There is **no Mode B package channel** for Wasm. App Store / Play extra software
 
 Milestone: [Support WASI P1 P2 WASM!](https://github.com/Wawona/Wawona/milestone/2).
 Developers: [Wasm host ABI](@/docs/contributor/wasm-host-abi.md),
-[Wayland wasm](@/docs/contributor/wayland-wasm.md),
-[ArtCraft wasm packages](@/docs/contributor/artcraft-wasm.md).
+[Wayland wasm](@/docs/contributor/wayland-wasm.md).
+ArtCraft Crafting Apps: not in the catalog yet
+([notes](@/docs/contributor/artcraft-wasm.md)).
 
 ## Package builds and planned Wasmer / WebC
 
@@ -60,19 +61,6 @@ wasm chess-wawona
 Catalog entry:
 [`chess-wawona`](https://repo.wawona.io/search/?channel=wasm&query=chess-wawona).
 How it is built (developers): [Wayland wasm](@/docs/contributor/wayland-wasm.md).
-
-### Example: EffectCraft expr (`effectcraft-expr`)
-
-ArtCraft Crafting Apps do **not** drop in from their browser `xtask web` builds.
-The first `/wasm/v1` slice is a WASI CLI over EffectCraft’s expression checker
-(upstream v0.6.0). Not the full After Effects analog GUI.
-
-```text
-wpm install effectcraft-expr
-wasm effectcraft-expr '1+1'
-```
-
-Developers: [ArtCraft wasm packages](@/docs/contributor/artcraft-wasm.md).
 
 ## Compile (no Nix)
 
