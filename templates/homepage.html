@@ -122,13 +122,13 @@
         <ol class="lp-stack" aria-label="Wawona stack">
             <li class="lp-stack-layer">
                 <span class="lp-stack-kicker">Host UI</span>
-                <strong>AppKit, UIKit, WatchKit, Compose, GTK</strong>
+                <strong>SwiftUI, Compose, GTK</strong>
                 <span class="lp-stack-note">Native chrome. One window or scene per client where the OS allows it.</span>
             </li>
             <li class="lp-stack-layer">
                 <span class="lp-stack-kicker">Rust core</span>
                 <strong>Wayland compositor</strong>
-                <span class="lp-stack-note">Seats, surfaces, protocols. Swift, ObjC, JNI, and GTK call the same core.</span>
+                <span class="lp-stack-note">Seats, surfaces, protocols. Swift, Kotlin/JNI, and GTK call the same core.</span>
             </li>
             <li class="lp-stack-layer">
                 <span class="lp-stack-kicker"><a class="lp-iland-link" href="https://github.com/Wawona/wwn-iland" target="_blank" rel="noopener">wwn-iland</a></span>
@@ -145,11 +145,11 @@
         <div class="lp-inside-grid">
             <article class="lp-inside-card">
                 <h3>One Rust core</h3>
-                <p>The compositor lives in Rust. Hosts do not get a second compositor. Swift, Objective-C, Kotlin/JNI, and GTK call the same core. UniFFI still exists in <a class="lp-iland-link" href="https://github.com/Wawona/Wawona/tree/development/src/ffi" target="_blank" rel="noopener"><code>src/ffi</code></a>. It is not the only bridge.</p>
+                <p>The compositor lives in Rust. Hosts do not get a second compositor. Swift, Kotlin/JNI, and GTK call the same core. UniFFI owns the product domain. The frame loop stays the <code>WWNCore*</code> C ABI in <a class="lp-iland-link" href="https://github.com/Wawona/Wawona/tree/development/src/ffi" target="_blank" rel="noopener"><code>src/ffi</code></a>. Swift and JNI call it.</p>
             </article>
             <article class="lp-inside-card">
                 <h3>Real host windows</h3>
-                <p>Each Wayland client is a host window or scene, not a fake desktop in one framebuffer. macOS keeps AppKit chrome. iPadOS and visionOS open one scene per client. Phone, tvOS, and Android fill the primary surface. watchOS runs one client.</p>
+                <p>Each Wayland client is a host window or scene, not a fake desktop in one framebuffer. macOS uses SwiftUI windows (zoom, fullscreen, miniaturize). iPadOS and visionOS open one scene per client. Phone, tvOS, and Android fill the primary surface. watchOS runs one client.</p>
             </article>
             <article class="lp-inside-card">
                 <h3>Userspace KMS</h3>
