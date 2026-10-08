@@ -337,7 +337,7 @@ macOS Classic Take Over is implemented on `wawona-macos-desktop-host`. LockScree
 </summary>
 <div class="faq-answer">
 
-**Coming soon.** Machines will gain `virtual_machine` and `container` profiles on macOS, iOS, iPadOS, visionOS, Android, and Linux. Store iOS family uses UTM-SE-class **jitless** engines (Mode A); jailbreak **Mode B IPA** from [repo.wawona.io](https://repo.wawona.io) may use JIT. macOS: Virtualization + Containerization. Forbidden on tvOS and watchOS. See [Mode A/B](/docs/mode-a-b/) and [VMs and containers](/docs/vms/).
+**Coming soon.** Machines will gain `virtual_machine` and `container` profiles on macOS, iOS, iPadOS, Android, and Linux. Engine is Wawona Relay. Store builds stay jitless. Mode B builds may add Relay's Mode B runtime. macOS product VMs use Virtualization.framework. Forbidden on tvOS, watchOS, and visionOS. Not UTM. See [Mode A/B](/docs/mode-a-b/) and [VMs and containers](/docs/vms/).
 
 </div>
 </details>
