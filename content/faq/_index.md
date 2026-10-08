@@ -231,24 +231,22 @@ A Machine is a saved session in the Machines window. Kinds: `native`, `ssh_waypi
 </summary>
 <div class="faq-answer">
 
-Wawona's iOS product starts at **iOS 11**. iPadOS is a separate product that
-starts at **iPadOS 13**. An iPad on iOS 11 or 12 uses the shared iOS UIKit IPA
-or Sileo package. The privileged products have separate floors: the TrollStore
-`.tipa` starts at **iOS 14**, while the jailbroken **Sileo `.deb`** from
-[repo.wawona.io](https://repo.wawona.io) starts at **iOS 11**.
+Wawona's iOS and iPadOS products start at **13.0**. iOS 11 and 12 are not
+supported. All artifacts compile with the latest iPhoneOS SDK. The App Store
+IPA and the Sileo `.deb` use Mach-O floor **13.0**. The TrollStore `.tipa`
+uses floor **14.0**.
 
 | iOS version | Mode A normal IPA | TrollStore `.tipa` | Sileo jailbroken `.deb` |
 |---:|---|---|---|
-| 11-13 | Available | Not available | Available |
-| 14-16 | Available | Available | Available |
-| 17 | Available | 17.0 only | Available where jailbroken |
-| 18 | Available | Not a permanent-signing target | Available where jailbroken |
-| 26 | Available | TrollStore Lite lab only on jailbroken iOS | Available where jailbroken |
+| 13 | iOS 13+ binary | Not available | iOS 13+ binary |
+| 14-16 | iOS 13+ binary | iOS 14+ binary | iOS 13+ binary |
+| 17 | iOS 13+ binary | 17.0 only | iOS 13+ binary where jailbroken |
+| 18 | iOS 13+ binary | Not a permanent-signing target | iOS 13+ binary where jailbroken |
+| 26 | iOS 13+ binary | TrollStore Lite lab only on jailbroken iOS | iOS 13+ binary where jailbroken |
 
-All three use the current iPhoneOS SDK. iOS 11 and 12 use Wawona's UIKit
-Machines screen because SwiftUI begins at iOS 13. “Available where jailbroken”
-does not promise a jailbreak for every device or point release. See
-[Mode A and Mode B](/docs/mode-a-b/) for the full channel matrix.
+“Available where jailbroken” does not promise a jailbreak for every device
+or point release. See [Mode A and Mode B](/docs/mode-a-b/) for the full
+channel matrix.
 
 </div>
 </details>

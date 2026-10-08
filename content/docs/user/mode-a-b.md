@@ -13,42 +13,30 @@ Canonical: [mode-a-b.md](https://github.com/Wawona/Wawona/blob/development/docs/
 
 ## iOS / iPadOS: three install channels
 
-## iOS support matrix (11 through 26)
+## iOS support matrix (13 through 26)
 
 All rows build with the newest iPhoneOS SDK. The minimum version belongs to
-the product artifact, not the SDK. iPadOS products start at iPadOS 13. An iPad
-on iOS 11 or 12 uses the shared iOS UIKit IPA or Sileo package, not a separate
-iPadOS artifact.
+the product artifact, not the SDK. iOS 11 and 12 are not supported. iPadOS
+products start at iPadOS 13.
 
 | iOS version | Mode A normal IPA | Mode B TrollStore `.tipa` | Mode B jailbroken Sileo `.deb` |
 |---:|---|---|---|
-| 11 | Available | Not available | Available |
-| 12 | Available | Not available | Available |
-| 13 | Available | Not available | Available |
-| 14 | Available | Available | Available |
-| 15 | Available | Available | Available |
-| 16 | Available | Available | Available |
-| 17 | Available on 17.0 | Available on 17.0 | Available where jailbroken |
-| 18 | Available | Not a permanent-signing target | Available where jailbroken |
-| 19 | No Apple iOS release | No Apple iOS release | No Apple iOS release |
-| 20 | No Apple iOS release | No Apple iOS release | No Apple iOS release |
-| 21 | No Apple iOS release | No Apple iOS release | No Apple iOS release |
-| 22 | No Apple iOS release | No Apple iOS release | No Apple iOS release |
-| 23 | No Apple iOS release | No Apple iOS release | No Apple iOS release |
-| 24 | No Apple iOS release | No Apple iOS release | No Apple iOS release |
-| 25 | No Apple iOS release | No Apple iOS release | No Apple iOS release |
-| 26 | Available | TrollStore Lite lab only on a jailbroken device | Available where jailbroken |
+| 13 | iOS 13+ binary | Not available | iOS 13+ binary |
+| 14-16 | iOS 13+ binary | iOS 14+ binary | iOS 13+ binary |
+| 17 | iOS 13+ binary | 17.0 only | iOS 13+ binary where jailbroken |
+| 18 | iOS 13+ binary | Not a permanent-signing target | iOS 13+ binary where jailbroken |
+| 26 | iOS 13+ binary | TrollStore Lite lab only on a jailbroken device | iOS 13+ binary where jailbroken |
 
-`Available` means Wawona builds that artifact for the stated deployment floor.
-It does not promise that a jailbreak or permanent-signing installer exists for
-every device and point release. TrollStore's permanent-signing releases cover
+The artifact floor is: Mode A IPA **13.0**, TrollStore `.tipa` **14.0**, Sileo
+`.deb` **13.0**. That does not promise a jailbreak or permanent-signing
+installer for every device. TrollStore's permanent-signing releases cover
 iOS 14.0 beta 2 through 16.6.1, 16.7 RC, and 17.0.
 
 | Channel | Minimum iOS | How you install | VMs / containers | Wasm | Desktop + LockScreen | Swinging Bridge |
 |--|--|--|--|--|--|--|
-| **App Store / TestFlight** | **11** | Apple | Relay **StaticCpu** (jitless). No Hypervisor | Bytecode, **no** JIT | No | No |
+| **App Store / TestFlight** | **13** | Apple | Relay **StaticCpu** (jitless). No Hypervisor | Bytecode, **no** JIT | No | No |
 | **TrollStore** | **14** | Sideload tipa (website) | Relay. **Hypervisor.framework** when SoC + OS ≤16.3.1 + kernel probe pass; else StaticCpu | Same `/wasm/` packages; JIT execute may be allowed later | Yes (IOMFB in-app) | No |
-| **Sileo (`repo.wawona.io`)** | **11** | Jailbreak + Sileo `.deb` | Same Relay HV window as tipa | Same | **Yes** (+ ElleKit) | **Yes** |
+| **Sileo (`repo.wawona.io`)** | **13** | Jailbreak + Sileo `.deb` | Same Relay HV window as tipa | Same | **Yes** (+ ElleKit) | **Yes** |
 
 App Store and TestFlight materials must **never** mention TrollStore, Sileo, jailbreak, Hypervisor, or JIT. This site and [repo.wawona.io](https://repo.wawona.io) may.
 
@@ -63,14 +51,14 @@ App Store and TestFlight materials must **never** mention TrollStore, Sileo, jai
 
 TrollStore alone does **not** install Wawona Swinging Bridge Mode B (Sileo only).
 
-The public `.tipa` starts at iOS 14. It is not an iOS 11-13 install path.
+The public `.tipa` starts at iOS 14. It is not an iOS 13 install path.
 Permanent-signing support is iOS 14.0 beta 2 through 16.6.1, 16.7 RC, and
 17.0. TrollStore Lite on a jailbroken vphone is a lab installer, not a wider
 public `.tipa` support promise.
 
 ### Sileo (full Mode B)
 
-On a jailbroken device, install the iOS 11+ `.deb` from [repo.wawona.io](https://repo.wawona.io). Same Relay VM story as tipa, **plus** Desktop, LockScreen, Swinging Bridge, unsandboxed shell, and host APT. iOS 11 and 12 use Wawona's UIKit Machines screen because SwiftUI starts at iOS 13.
+On a jailbroken device, install the iOS 13+ `.deb` from [repo.wawona.io](https://repo.wawona.io). Same Relay VM story as tipa, **plus** Desktop, LockScreen, Swinging Bridge, unsandboxed shell, and host APT.
 
 ## Relay on iOS (not QEMU)
 
