@@ -11,20 +11,21 @@ Canonical keys live in the [Wawona settings doc](https://github.com/Wawona/Wawon
 
 ## Where to find Settings
 
-Global Wawona Settings live in **exactly one place** per platform. Prefer the
-OS Settings app when that host exists. The app does not also show a full
-duplicate Global Settings screen on those platforms.
+Global Wawona Settings live **inside the Wawona app** on every platform. Open
+Settings from the app toolbar, `⌘,` on macOS, or the gear in Machines. There
+is no Wawona page in System Settings, the iOS Settings app, or the iPhone
+Watch app.
 
 | Platform | Where |
 |----------|--------|
-| macOS | System Settings → Wawona |
-| iPhone / iPad | Settings → Apps → Wawona |
-| Apple Watch | iPhone Watch app → My Watch → Wawona |
-| Apple TV / Vision Pro | Inside the Wawona app |
-| Android | Inside the Wawona app (also App Info → Preferences) |
+| macOS | Inside Wawona (sidebar Settings; `⌘,`) |
+| iPhone / iPad | Inside Wawona (sidebar Settings) |
+| Apple Watch | Inside the Watch app |
+| Apple TV / Vision Pro | Inside Wawona |
+| Android | Inside Wawona |
 
-Machine editors, About, and Dependencies stay in the app. They do not
-re-host the same Display / Input toggles.
+Machine editors stay separate. They do not re-host the same Display / Input
+toggles under a second hub.
 
 A Settings row is a one-line title plus On/Off, a title plus the current
 choice, or a title plus the current value (short values on the trailing
