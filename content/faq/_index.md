@@ -349,7 +349,7 @@ macOS Classic Take Over is implemented on `wawona-macos-desktop-host`. LockScree
 </summary>
 <div class="faq-answer">
 
-GitHub assets on each `v*` tag (CalVer `YY.M.D`, for example `v26.8.12`). TestFlight and Play internal on every green push to `master` (Ship: beta). Older 0.x marketing versions are retired. Find beta links on the [Wawona Discord](https://discord.gg/wHVSV52uw5). Binaries themselves are under Where.
+GitHub assets on each `v*` tag (CalVer `YY.M.D`, for example `v26.8.12`). TestFlight and Play internal on every green push to `master` (Ship: beta). Play Closed Alpha is the interim external channel; Open testing opt-in lands after production access. Older 0.x marketing versions are retired. Find beta links on the [Wawona Discord](https://discord.gg/wHVSV52uw5). Binaries themselves are under Where.
 
 </div>
 </details>
@@ -366,7 +366,7 @@ GitHub assets on each `v*` tag (CalVer `YY.M.D`, for example `v26.8.12`). TestFl
 </summary>
 <div class="faq-answer">
 
-[Download](/download/) for GitHub assets on `v*` tags. Ship: beta (stores) on `master` is TestFlight and Play internal. Find beta testing links on the [Wawona Discord](https://discord.gg/wHVSV52uw5). You do not need Nix to run a downloaded binary. macOS is not an App Store feature target. Filename scheme for developers: [Prebuilt binary naming](/docs/prebuilt-naming/).
+[Download](/download/) for GitHub assets on `v*` tags. Ship: beta (stores) on `master` is TestFlight and Play internal. Discord also carries Closed Alpha / Open testing links when those tracks are live. You do not need Nix to run a downloaded binary. macOS is not an App Store feature target. Filename scheme for developers: [Prebuilt binary naming](/docs/prebuilt-naming/).
 
 </div>
 </details>
