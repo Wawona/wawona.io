@@ -22,4 +22,7 @@ permissions:
 jobs:
   report:
     name: Nix floor
-    uses: Wawona/Wawona/.github/workflows/nix-repo-floor.yml@development
+    permissions:
+      contents: read
+      id-token: write
+    uses: Wawona/Wawona/.github/workflows/nix-repo-floor.yml@9d381b572ef90952c6bf343b9b5a38e2bb8a79b2
