@@ -18,7 +18,7 @@ Document the product map accurately. Prefer `/docs/swinging-bridge/`,
 - Formerly **anowaW** → always **Wawona Swinging Bridge** (alias `/docs/anowaw/` OK).
 - Wawona Runtime package manager is **App Store compliant** (Wasm only; no Mode B Runtime).
 
-Deploy note: Pages often ship from **`main`**. Merge docs there when public
-URLs must update.
+Deploy note: Pages ship from **`master`**. Merge docs there when public
+URLs must update. `development` is the work branch.
 
 See always-applied `wawona-product-map`.

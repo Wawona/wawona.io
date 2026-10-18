@@ -3,7 +3,7 @@ name: Deploy Zola site to Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
   workflow_dispatch:
   # Refresh Ko-fi + GitHub Sponsors totals without a content push.
   schedule:

@@ -2,7 +2,7 @@ name: Nix floor
 
 on:
   push:
-    branches: [development, master, main]
+    branches: [development, master]
     paths:
       - "flake.nix"
       - "flake.lock"

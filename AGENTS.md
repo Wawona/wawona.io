@@ -74,4 +74,4 @@ Wasm packages. Runtime package management is always App Store / Play compliant
 (no Mode B Runtime). Store/TestFlight copy must never pitch jailbreak.
 
 See `.cursor/rules/wawona-product-map.mdc` and `.cursor/rules/wawona-io-product-map.mdc`.
-Public URL updates need a push to **`main`** (not only `development`).
+Public URL updates need a push to **`master`** (not only `development`).
