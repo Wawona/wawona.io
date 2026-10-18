@@ -107,7 +107,7 @@
             aria-label="Donation goal: ${{ donation_raised_usd | num_format }} of ${{ donation_goal_usd | num_format }} raised, {{ donation_progress_pct }} percent">
             <span class="nav-goal-text"><strong>${{ donation_raised_usd | num_format }}</strong> of ${{ donation_goal_usd | num_format }} goal</span>
             <span class="nav-goal-track" aria-hidden="true">
-                <span class="nav-goal-fill" style="width: {{ donation_progress_pct }}%"></span>
+                <span class="nav-goal-fill" style="--donation-progress: {{ donation_progress_pct }}"></span>
             </span>
         </a>
     </div>

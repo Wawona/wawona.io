@@ -2,10 +2,12 @@
 
 {% set current_path = current_path | default(value="/") %}
 
-{# Donation goal. Config is the single source. Clamp bad values so the
-   banner and header never show a negative remainder or a bar past 100%. #}
+{# Donation goal. Goal stays in config. Raised is Ko-fi goal progress plus
+   GitHub Sponsors lifetime receipts (data/donation.json, refresh via
+   scripts/fetch_donation_totals.py). Clamp so the bar never passes 100%. #}
+{% set donation_progress = load_data(path="data/donation.json") %}
 {% set_global donation_goal_usd = config.extra.donation_goal_usd | default(value=50000) %}
-{% set_global donation_raised_usd = config.extra.donation_raised_usd | default(value=0) %}
+{% set_global donation_raised_usd = donation_progress.raised_usd | default(value=0) %}
 {% if donation_raised_usd < 0 %}
 {% set_global donation_raised_usd = 0 %}
 {% endif %}

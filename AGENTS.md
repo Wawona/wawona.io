@@ -45,10 +45,13 @@ Linux). Details: `docs/secrets.md`.
 
 GitHub Sponsors is the primary path. Ko-fi is the alternative.
 
-The funding goal and the amount raised live in `config.extra.donation_goal_usd`
-and `config.extra.donation_raised_usd`. The header pill and the top banner read
-both values. GitHub does not publish a public sponsorship total, so update the
-raised value by hand after checking Sponsors.
+The funding goal is `config.extra.donation_goal_usd` ($50,000). The amount
+raised is `data/donation.json` `raised_usd`: Ko-fi public goal progress
+(percent times that goal) plus GitHub Sponsors lifetime receipts for
+`aspauldingcode`. `scripts/fetch_donation_totals.py` writes the file. Deploy
+runs it before `zola build` (and on a daily schedule). Ko-fi fetch needs a
+curl-impersonate Chrome wrapper (`CURL_IMPERSONATE`). GitHub fetch needs
+`GH_TOKEN` or `SPONSORS_READ_TOKEN`. Do not hand-edit the raised total.
 
 Build the Sponsors URL from the slider:
 

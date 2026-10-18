@@ -429,12 +429,21 @@ nav .logo:hover .nav-logo {
 /* ===== DONATION GOAL (HEADER) ===== */
 /* Compact progress pill at the end of the nav. Styled as a chip, not a
    text link, so the nav hover rules do not paint it like one. */
+/* inline-grid + max-content, not inline-flex. WebKit sizes a percentage-width
+   child of a shrink-to-fit column flex item against the nav, so the pill
+   grows to the row and the label clips. The text sets the column. The track
+   stretches to that column. The fill is absolute, so its scale never feeds
+   the pill's intrinsic width. */
 .site-top nav .right-nav a.nav-goal {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.3rem;
-    min-width: 8.75rem;
+    display: inline-grid;
+    grid-template-columns: max-content;
+    row-gap: 0.3rem;
+    align-items: stretch;
+    justify-items: stretch;
+    width: max-content;
+    max-width: 100%;
+    min-width: max-content;
+    flex: 0 0 auto;
     padding: 0.32rem 0.7rem;
     border: 1px solid var(--border-color);
     border-radius: 10px;
@@ -448,6 +457,19 @@ nav .logo:hover .nav-logo {
     text-decoration: none;
     white-space: nowrap;
     box-sizing: border-box;
+    overflow: visible;
+}
+
+.site-top nav.nav-collapsed .right-nav a.nav-goal {
+    width: max-content;
+    max-width: 100%;
+    min-width: max-content;
+    align-self: flex-start;
+    padding: 0.32rem 0.7rem;
+}
+
+.site-top nav .right-nav a.nav-goal .nav-goal-text {
+    min-width: max-content;
 }
 
 .site-top nav .right-nav a.nav-goal strong {
@@ -456,18 +478,26 @@ nav .logo:hover .nav-logo {
 }
 
 .site-top nav .right-nav a.nav-goal .nav-goal-track {
+    position: relative;
     display: block;
     height: 4px;
+    min-height: 4px;
     border-radius: 999px;
     background: var(--bg-0);
     overflow: hidden;
 }
 
 .site-top nav .right-nav a.nav-goal .nav-goal-fill {
-    display: block;
-    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
     border-radius: inherit;
     background: var(--primary-color);
+    transform: scaleX(calc(var(--donation-progress, 0) * 0.01));
+    transform-origin: left center;
 }
 
 @media (hover: hover) {

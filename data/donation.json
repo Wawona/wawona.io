@@ -1,0 +1,13 @@
+{
+  "raised_usd": 200,
+  "raised_cents": 20000,
+  "kofi_usd": 200,
+  "kofi_cents": 20000,
+  "kofi_percent": 2.0,
+  "kofi_goal_usd": 10000,
+  "github_sponsors_usd": 0,
+  "github_sponsors_cents": 0,
+  "github_sponsors_user": "aspauldingcode",
+  "kofi_url": "https://ko-fi.com/aspauldingcode",
+  "fetched_at": "2026-10-18T18:10:08Z"
+}
