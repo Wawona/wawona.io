@@ -45,6 +45,11 @@ Linux). Details: `docs/secrets.md`.
 
 GitHub Sponsors is the primary path. Ko-fi is the alternative.
 
+The funding goal and the amount raised live in `config.extra.donation_goal_usd`
+and `config.extra.donation_raised_usd`. The header pill and the top banner read
+both values. GitHub does not publish a public sponsorship total, so update the
+raised value by hand after checking Sponsors.
+
 Build the Sponsors URL from the slider:
 
 `https://github.com/sponsors/{user}/sponsorships?sponsor={user}&frequency=recurring|one-time&amount={usd}`

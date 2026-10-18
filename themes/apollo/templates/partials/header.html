@@ -342,9 +342,55 @@
         .donate-banner-copy {
             flex: 1 1 12rem;
             min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .donate-banner-lead {
             margin: 0;
             font-size: 0.92rem;
             line-height: 1.35;
+        }
+
+        .donate-banner-goal {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.1rem 0.6rem;
+            margin: 0;
+            font-size: 0.78rem;
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            line-height: 1.3;
+            color: var(--text-1, #aaa);
+        }
+
+        .donate-banner-goal-raised {
+            color: var(--text-0, #eee);
+        }
+
+        .donate-banner-progress {
+            flex: 1 0 100%;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--bg-0, #121212);
+            border: 1px solid var(--border-color, #333);
+            overflow: hidden;
+        }
+
+        .donate-banner-progress-fill {
+            display: block;
+            height: 100%;
+            border-radius: inherit;
+            background: var(--primary-color, #ef5350);
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .donate-banner-progress-fill {
+                transition: none;
+            }
         }
 
         .donate-banner-actions {

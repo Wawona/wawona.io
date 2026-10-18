@@ -1,6 +1,22 @@
 {% import "macros/macros.html" as post_macros %}
 
 {% set current_path = current_path | default(value="/") %}
+
+{# Donation goal. Config is the single source. Clamp bad values so the
+   banner and header never show a negative remainder or a bar past 100%. #}
+{% set_global donation_goal_usd = config.extra.donation_goal_usd | default(value=50000) %}
+{% set_global donation_raised_usd = config.extra.donation_raised_usd | default(value=0) %}
+{% if donation_raised_usd < 0 %}
+{% set_global donation_raised_usd = 0 %}
+{% endif %}
+{% if donation_goal_usd > 0 and donation_raised_usd > donation_goal_usd %}
+{% set_global donation_raised_usd = donation_goal_usd %}
+{% endif %}
+{% set_global donation_progress_pct = 0 %}
+{% if donation_goal_usd > 0 %}
+{% set_global donation_progress_pct = (donation_raised_usd * 100 / donation_goal_usd) | round(precision=1) %}
+{% endif %}
+
 <!DOCTYPE html>
 <html lang="en" class="dark{% if current_path is starting_with("/donate") %} on-donate{% endif %}">
 
@@ -9,10 +25,20 @@
 <body>
     <div class="site-top">
         <aside id="donationBanner" class="donate-banner">
-            <p class="donate-banner-copy">Donate to Alex Spaulding to keep Wawona in development.</p>
+            <div class="donate-banner-copy">
+                <p class="donate-banner-lead">Donate to Alex Spaulding to keep Wawona in development.</p>
+                <p class="donate-banner-goal">
+                    <span class="donate-banner-goal-raised">${{ donation_raised_usd | num_format }} of ${{ donation_goal_usd | num_format }} raised</span>
+                    <span class="donate-banner-goal-left">${{ (donation_goal_usd - donation_raised_usd) | num_format }} to go</span>
+                </p>
+            </div>
             <div class="donate-banner-actions">
                 <a class="donate-banner-go" href="/donate/">Donate</a>
                 <button type="button" class="donate-banner-dismiss" data-donate-dismiss>Not now</button>
+            </div>
+            <div class="donate-banner-progress" role="progressbar" aria-label="Donation goal"
+                aria-valuemin="0" aria-valuemax="{{ donation_goal_usd }}" aria-valuenow="{{ donation_raised_usd }}">
+                <span class="donate-banner-progress-fill" style="width: {{ donation_progress_pct }}%"></span>
             </div>
         </aside>
         {% include "partials/nav.html" %}
