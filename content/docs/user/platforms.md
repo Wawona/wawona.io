@@ -35,7 +35,7 @@ Linux: native + remote available; VM/containers planned (KVM); Desktop/LockScree
 
 ## Notes
 
-- **iOS and iPadOS** share Desktop/LockScreen and Swinging Bridge policy (store Mode A vs TrollStore / Sileo Mode B). See [Mode A and Mode B](@/docs/user/mode-a-b.md).
+- **iOS and iPadOS** share Desktop/LockScreen policy (store Mode A, TrollStore IOMFB, Sileo). Swinging Bridge on iOS is Sileo only. See [Mode A and Mode B](@/docs/user/mode-a-b.md).
 - **VM / containers**. Engine is **Wawona Relay**. Mode A store iOS uses StaticCpu. Mode B may use Hypervisor.framework on M1 / M2 / A16 with iOS/iPadOS ≤16.3.1. macOS product path is Virtualization.framework. **visionOS, tvOS, and watchOS forbid VM/container kinds.** See [VMs and containers](@/docs/user/vms-containers.md) and [relay-ios-hypervisor.md](https://github.com/Wawona/Wawona/blob/development/docs/relay-ios-hypervisor.md).
 - **Not the product engine:** QEMU, TCTI, UTM. Third-party UTM guests may still be used over SSH + waypipe.
 - **On-device shell**. Bundled zsh (Mode A); Mode B may use unsandboxed jailbreak shell. See [On-device shell](@/docs/user/shell.md).

@@ -79,8 +79,9 @@ HV plan and device tables: [relay-ios-hypervisor.md](https://github.com/Wawona/W
 | Who | App Store, TestFlight, Play | TrollStore / Sileo / SIP / root |
 | iOS VMs and containers | Relay StaticCpu | Relay; Hypervisor.framework inside the UTM-era window |
 | macOS VMs | Virtualization.framework | Same product path (Desktop Mode B is separate) |
-| iOS shell | Sandboxed `wwn-zsh` | Unsandboxed / host APT (Sileo) |
+| iOS shell | Sandboxed `wwn-zsh` | TrollStore stays sandboxed. Sileo is unsandboxed plus host APT |
 | Desktop / LockScreen (iOS) | Not in the store app | TrollStore IOMFB and/or Sileo |
+| Swinging Bridge (iOS) | Forbidden | Sileo only |
 | Packages | Wasm from `repo.wawona.io/wasm/v1` + Files + `wpm` | Same wasm registry **plus** jailbreak `.deb` on Sileo |
 
 ## Related
@@ -88,3 +89,5 @@ HV plan and device tables: [relay-ios-hypervisor.md](https://github.com/Wawona/W
 - [VMs and containers](@/docs/user/vms-containers.md)
 - [WASM / packages](@/docs/user/wasm.md) · [Packages (search / wpm / apt)](@/docs/user/packages.md)
 - [Desktop](@/docs/user/desktop.md) · [Wawona Swinging Bridge](@/docs/user/swinging-bridge.md)
+- [linux-dmabuf zero-copy](@/docs/contributor/linux-dmabuf.md)
+- Download flavors: [Download](@/download/) (`.ipa`, `.tipa`, rootless, rootful)
