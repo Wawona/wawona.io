@@ -53,11 +53,11 @@ toc = true
 github_sponsors_user = "aspauldingcode"
 kofi_url = "https://ko-fi.com/aspauldingcode"
 
-# Donation goal. The site header and the top donate banner show progress
-# toward this amount. Update donation_raised_usd by hand after checking
-# GitHub Sponsors. GitHub does not publish a public sponsorship total.
+# Donation goal shown in the header pill and the top banner.
+# Raised dollars are not edited here. scripts/fetch_donation_totals.py writes
+# data/donation.json: Ko-fi public goal progress + GitHub Sponsors lifetime
+# receipts for aspauldingcode. Deploy refreshes that file before zola build.
 donation_goal_usd = 50000
-donation_raised_usd = 0
 
 # Download beta survey POST (Vercel). Token: pass secretspec/shared/default/SURVEY_GITHUB_TOKEN
 # Inbox: private github.com/Wawona/beta-survey

@@ -5,6 +5,9 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+  # Refresh Ko-fi + GitHub Sponsors totals without a content push.
+  schedule:
+    - cron: "17 15 * * *"
 
 permissions:
   contents: read
@@ -30,6 +33,25 @@ jobs:
           ZOLA_VERSION="0.22.1"
           curl -L https://github.com/getzola/zola/releases/download/v$ZOLA_VERSION/zola-v$ZOLA_VERSION-x86_64-unknown-linux-gnu.tar.gz | tar xz
           sudo mv zola /usr/local/bin/
+
+      - name: Install curl-impersonate
+        run: |
+          # Ko-fi sits behind Cloudflare. Plain curl gets a challenge page.
+          ver=2.2.3
+          dir="$RUNNER_TEMP/curl-impersonate"
+          mkdir -p "$dir"
+          curl -fsSL -o /tmp/curl-impersonate.tar.gz \
+            "https://github.com/lexiforest/curl-impersonate/releases/download/v${ver}/curl-impersonate-v${ver}.x86_64-linux-gnu.tar.gz"
+          tar -xzf /tmp/curl-impersonate.tar.gz -C "$dir"
+          bin="$(find "$dir" -type f -name 'curl_chrome*' | sort | tail -1)"
+          test -n "$bin"
+          echo "CURL_IMPERSONATE=$bin" >> "$GITHUB_ENV"
+
+      - name: Fetch donation totals
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SPONSORS_READ_TOKEN: ${{ secrets.SPONSORS_READ_TOKEN }}
+        run: python3 scripts/fetch_donation_totals.py
 
       - name: Build
         run: zola build --output-dir ./public
