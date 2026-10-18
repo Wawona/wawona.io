@@ -90,4 +90,4 @@ HV plan and device tables: [relay-ios-hypervisor.md](https://github.com/Wawona/W
 - [WASM / packages](@/docs/user/wasm.md) · [Packages (search / wpm / apt)](@/docs/user/packages.md)
 - [Desktop](@/docs/user/desktop.md) · [Wawona Swinging Bridge](@/docs/user/swinging-bridge.md)
 - [linux-dmabuf zero-copy](@/docs/contributor/linux-dmabuf.md)
-- Download flavors: [Download](@/download/) (`.ipa`, `.tipa`, rootless, rootful)
+- Download flavors: [Download](@/download/_index.md) (`.ipa`, `.tipa`, rootless, rootful)
