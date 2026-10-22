@@ -276,7 +276,7 @@ macOS **Classic Desktop Replacement** exists on the desktop-host build (SIP full
 </summary>
 <div class="faq-answer">
 
-Userspace DRM/KMS/GBM ([wwn-iland](https://github.com/Wawona/wwn-iland)). Compositors and clients see connector, CRTC, plane, GBM. Present is Metal or AHardwareBuffer. Wawona never opens `/dev/dri`. **Mode A** draws inside a Wawona window (Aqua stays). **Classic Desktop Replacement** (Mode B `libwayland-mac.dylib` + `wwn-igetty`) unloads WindowServer and presents fullscreen Metal, so Aqua is not in that session. Not [Wawona Swinging Bridge](/docs/swinging-bridge/). See [iland](/docs/iland/).
+Userspace DRM/KMS/GBM ([wwn-iland](https://github.com/Wawona/wwn-iland)). Compositors and clients see connector, CRTC, plane, GBM. Present is Metal or AHardwareBuffer. Wawona never opens `/dev/dri`. **Mode A** draws inside a Wawona window (Aqua stays). **Classic Desktop Replacement** (Mode B `libwayland-mac.dylib` + `iGetty`) unloads WindowServer and presents fullscreen Metal, so Aqua is not in that session. Not [Wawona Swinging Bridge](/docs/swinging-bridge/). See [iland](/docs/iland/).
 
 </div>
 </details>
@@ -498,7 +498,7 @@ Users do not need Nix to run a downloaded binary. Nix is how we cross-compile he
 </summary>
 <div class="faq-answer">
 
-On macOS desktop-host: Settings → Desktop → **Enable Desktop Replacement** (Path B; Restart; no screen takeover), then **Replace now**. SIP must be fully disabled (`csrutil disable` in Recovery). Classic unloads WindowServer. iland userspace DRM/KMS/GBM presents fullscreen Metal (`libwayland-mac.dylib`, `wwn-igetty` VTs). Aqua is not drawn. Still never `/dev/dri`. Logout or Ctrl+Option+Backspace returns Aqua. Restage with `nix run .#install`. LockScreen greeter and Android Default Home + LockScreen APIs are still planned. iOS and iPadOS: jailbreak tweak from [repo.wawona.io](https://repo.wawona.io) only (not in the App Store app). Not Linux. Not the same as [Wawona Swinging Bridge](/docs/swinging-bridge/). See [Desktop and LockScreen](/docs/desktop/) and [iland](/docs/iland/).
+On macOS desktop-host: Settings → Desktop → **Enable Desktop Replacement** (Path B; Restart; no screen takeover), then **Replace now**. SIP must be fully disabled (`csrutil disable` in Recovery). Classic unloads WindowServer. iland userspace DRM/KMS/GBM presents fullscreen Metal (`libwayland-mac.dylib`, `iGetty` VTs). Aqua is not drawn. Still never `/dev/dri`. Logout or Ctrl+Option+Backspace returns Aqua. Restage with `nix run .#install`. LockScreen greeter and Android Default Home + LockScreen APIs are still planned. iOS and iPadOS: jailbreak tweak from [repo.wawona.io](https://repo.wawona.io) only (not in the App Store app). Not Linux. Not the same as [Wawona Swinging Bridge](/docs/swinging-bridge/). See [Desktop and LockScreen](/docs/desktop/) and [iland](/docs/iland/).
 
 </div>
 </details>

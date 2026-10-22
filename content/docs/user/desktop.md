@@ -10,7 +10,7 @@ date = 2026-08-25
 
 **macOS Classic Desktop Replacement exists** on `wawona-macos-desktop-host`. For one login session Wawona unloads Apple WindowServer (after IOWatchdog coverage) and presents a native compositor or kmscube on **iland userspace DRM/KMS/GBM**. That is a custom framebuffer: Linux-shaped KMS/GBM in process, mapped to a **fullscreen Metal** view. Wawona does not open `/dev/dri`. With WindowServer gone, this session does **not** composite Aqua (no Dock, menu bar, or Finder under the compositor). Logout returns Aqua. **LockScreen** (the greeter) and **Android** Default Home + LockScreen APIs are still in development.
 
-How iland, Mode B `libwayland-mac.dylib`, and `wwn-igetty` fit together: [iland](@/docs/contributor/iland.md).
+How iland, Mode B `libwayland-mac.dylib`, and `iGetty` fit together: [iland](@/docs/contributor/iland.md).
 
 This is **not** [Wawona Swinging Bridge](@/docs/user/swinging-bridge.md) (the app bridge). Do not confuse the two.
 
@@ -60,7 +60,7 @@ Default `.#wawona-macos` never ships the Mode B dylib. Mode A must keep working 
 Needs the **desktop-host** build, SIP fully disabled, and administrator once for Path B on first Enable or install.
 
 1. Settings → Desktop → **Enable Desktop Replacement**. That runs doctor, heal, Path B (`claim-install --path-b`), and syncs the helper + dylib for this build, then the native Restart sheet. It does **not** take over the screen.
-2. Reboot. Confirm `/var/db/wwn-iowatchdog/claim-ok` shows `path=b sticky=1` **and** live Disable (marker or Path B sock `done=1`). `claim-ok` alone can be stale.
+2. Reboot. Confirm `/var/db/iowatchdog-tools/claim-ok` shows `path=b sticky=1` **and** live Disable (marker or Path B sock `done=1`). `claim-ok` alone can be stale.
 3. Choose a Desktop machine: **weston** or **niri**. Demo clients (`kmscube`, `weston-terminal`, `foot`) are not eligible as the Desktop machine. F7 still overlays kmscube **inside** a Classic session.
 4. Settings or the menubar → **Replace now**. Classic unloads WindowServer only after IOWatchdog Disable ACK.
 5. Logout, or Ctrl+Option+Backspace (Fn+Ctrl+Option+Backspace on a MacBook), to return Aqua. Next login does not auto-engage.
@@ -76,7 +76,7 @@ Wawona --mode-b-probe      # KEEP_WS, WindowServer stays up
 
 ### After Take Over
 
-`wwn-igetty` owns VTs. Ctrl+Option+F1-F6 switches. F7-F9 overlay kmscube, gbm-es2-demo, vkcube-kms. Type `weston` or `niri` in a text VT. Wrappers detect Classic because **WindowServer is down**. They prefix `DYLD_INSERT_LIBRARIES` on that exec only (never export it in the login shell; Apple `/bin/*` is `arm64e`).
+`iGetty` owns VTs. Ctrl+Option+F1-F6 switches. F7-F9 overlay kmscube, gbm-es2-demo, vkcube-kms. Type `weston` or `niri` in a text VT. Wrappers detect Classic because **WindowServer is down**. They prefix `DYLD_INSERT_LIBRARIES` on that exec only (never export it in the login shell; Apple `/bin/*` is `arm64e`).
 
 Session compositor uses iland userspace DRM:
 
@@ -95,7 +95,7 @@ Classic Take Over runs `/Library/Application Support/Wawona/run-modeb.sh` and th
 - **Opening Wawona** (desktop-host) syncs the helper when it is missing or points at an older build.
 - **Settings → Desktop → Enable** also syncs before arming Path B.
 
-After you change the helper, the Mode B dylib (`wwn-iland`), or `igettyd` (`wwn-igetty`), run `nix run .#install` or open the new build once. Install does **not** Take Over, unload WindowServer, or touch `watchdogd` beyond re-enabling a job that a prior session left disabled.
+After you change the helper, the Mode B dylib (`wwn-iland`), or `igettyd` (`iGetty`), run `nix run .#install` or open the new build once. Install does **not** Take Over, unload WindowServer, or touch `watchdogd` beyond re-enabling a job that a prior session left disabled.
 
 If the helper still points at a previous `/nix/store/…-wawona-macos` path, Classic Take Over uses the old `igettyd` and old dylib. Wawona fails closed in that case: sync the helper, do not Take Over with a mixed store.
 
@@ -103,7 +103,7 @@ Contributor compile notes: [Compilation](@/docs/contributor/compilation.md#insta
 
 ### Safety (macOS 26)
 
-Never Take Over / unload `watchdogd` without sticky Path B ACK and live Disable. Never attach a debugger to `watchdogd` or WindowServer. Never `kickstart -k` watchdogd. Never `export DYLD_INSERT_LIBRARIES` in the login shell. Stage must never run `wwn-iowatchdog disable`.
+Never Take Over / unload `watchdogd` without sticky Path B ACK and live Disable. Never attach a debugger to `watchdogd` or WindowServer. Never `kickstart -k` watchdogd. Never `export DYLD_INSERT_LIBRARIES` in the login shell. Stage must never run `iowatchdog-tools disable`.
 
 ## How it was implemented
 
@@ -111,8 +111,8 @@ Never Take Over / unload `watchdogd` without sticky Path B ACK and live Disable.
 |-------|------|------|
 | Mode A archive | [`wwn-iland`](https://github.com/Wawona/wwn-iland) | `libiland_userland.a`, in-window present |
 | Mode B dylib | `wwn-iland` `iland-baremetal` | `libwayland-mac.dylib`, Mach IPC → `framebufferd` |
-| IOWatchdog Path B | [`wwn-iowatchdog`](https://github.com/Wawona/wwn-iowatchdog) | Sticky Disable ACK before unloading `watchdogd` |
-| VTs / getty | [`wwn-igetty`](https://github.com/Wawona/wwn-igetty) | `igettyd`, Doorman session, F1-F9 |
+| IOWatchdog Path B | [`iowatchdog-tools`](https://github.com/Wawona/iowatchdog-tools) | Sticky Disable ACK before unloading `watchdogd` |
+| VTs / getty | [`iGetty`](https://github.com/Wawona/iGetty) | `igettyd`, Doorman session, F1-F9 |
 | SIP + Settings + Take Over | [`Wawona`](https://github.com/Wawona/Wawona) | `WWNSipStatus`, `WWNDesktopReplacementController` |
 | Session weston DRM | [`wwn-weston`](https://github.com/Wawona/wwn-weston) | `--backend=drm` over iland |
 | Session niri DRM | [`wwn-niri`](https://github.com/Wawona/wwn-niri) | `NIRI_BACKEND=tty` after Classic |

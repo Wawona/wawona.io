@@ -64,9 +64,9 @@ Classic Desktop Replacement on `wawona-macos-desktop-host` is how macOS gets clo
 
 After **Replace now** (and only then):
 
-1. **IOWatchdog Path B** (`wwn-iowatchdog`) has a sticky Disable ACK. Unloading `watchdogd` without that panics on macOS 26. See [Desktop and LockScreen](@/docs/user/desktop.md).
+1. **IOWatchdog Path B** (`iowatchdog-tools`) has a sticky Disable ACK. Unloading `watchdogd` without that panics on macOS 26. See [Desktop and LockScreen](@/docs/user/desktop.md).
 2. Apple **WindowServer is not running** for that session. There is no Aqua desktop to composite. Wawona does not render Finder, Dock, or the menu bar.
-3. **`wwn-igetty`** owns virtual terminals (`igettyd`, Doorman session, F1-F9). The Desktop machine is a native weston or niri session, not a Linux VM.
+3. **`iGetty`** owns virtual terminals (`igettyd`, Doorman session, F1-F9). The Desktop machine is a native weston or niri session, not a Linux VM.
 4. The **Mode B dylib** (`libwayland-mac.dylib` from `wwn-iland` `iland-baremetal` / `macos-baremetal.nix`) is prefixed on the **session compositor** command only. Never `export DYLD_INSERT_LIBRARIES` in the login shell (Apple `/bin/*` is `arm64e`; a global export kills `date` / `launchctl`).
 5. That compositor talks **iland DRM**: weston `--backend=drm`, niri `NIRI_BACKEND=tty`. Clients allocate GBM/KMS as they would on Linux. iland implements the device. Present is a **fullscreen Metal** path (`framebufferd` over Mach), not a CAMetalLayer inside an Aqua window.
 
@@ -80,13 +80,13 @@ KEEP_WS (`Wawona --mode-b-probe`) leaves WindowServer up on purpose. That is a p
 |-------|------|------|
 | Mode A archive | [`wwn-iland`](https://github.com/Wawona/wwn-iland) | `libiland_userland.a`, in-window Metal present |
 | Mode B dylib | `wwn-iland` `iland-baremetal` | `libwayland-mac.dylib`. Intercepts the DRM/GBM ABI; Mach → `framebufferd` |
-| IOWatchdog Path B | [`wwn-iowatchdog`](https://github.com/Wawona/wwn-iowatchdog) | Sticky Disable ACK before unloading `watchdogd` |
-| VTs / getty | [`wwn-igetty`](https://github.com/Wawona/wwn-igetty) | `igettyd`, Doorman session, Ctrl+Option+F1-F9 |
+| IOWatchdog Path B | [`iowatchdog-tools`](https://github.com/Wawona/iowatchdog-tools) | Sticky Disable ACK before unloading `watchdogd` |
+| VTs / getty | [`iGetty`](https://github.com/Wawona/iGetty) | `igettyd`, Doorman session, Ctrl+Option+F1-F9 |
 | SIP, Settings, Take Over | [`Wawona`](https://github.com/Wawona/Wawona) | `WWNSipStatus`, `WWNDesktopReplacementController`, `WWNWaypipeRunner` |
 | Session weston DRM | [`wwn-weston`](https://github.com/Wawona/wwn-weston) | `--backend=drm` over iland |
 | Session niri DRM | [`wwn-niri`](https://github.com/Wawona/wwn-niri) | `NIRI_BACKEND=tty` after Classic |
 
-Friends how-to, install sync, and safety forbids: [Desktop and LockScreen](@/docs/user/desktop.md). After you change this dylib or `wwn-igetty`, run `nix run .#install` or open the new desktop-host app once. See [Compilation: install and updates](@/docs/contributor/compilation.md#install-and-updates-desktop-host).
+Friends how-to, install sync, and safety forbids: [Desktop and LockScreen](@/docs/user/desktop.md). After you change this dylib or `iGetty`, run `nix run .#install` or open the new desktop-host app once. See [Compilation: install and updates](@/docs/contributor/compilation.md#install-and-updates-desktop-host).
 
 Inner weston/niri started **inside** a Classic session are ordinary Wayland clients of that session's socket. Do not nest the **session** compositor on Wawona (there is no host Wayland after Classic). Do not `sudo niri` / `sudo weston`.
 

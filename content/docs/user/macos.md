@@ -20,7 +20,7 @@ macOS is a first-class host. It is **never** App Store feature-gated. Do not app
 ## Present path
 
 - **Mode A** (default): static `libiland_userland.a`. Present via `WWNIlandPresenter` / CAMetalLayer **in the Wawona window**. SIP may stay **enabled**. WindowServer still composites Aqua around that window. In-window nested compositors and clients still work.
-- **Mode B** (Classic Desktop Replacement): prefix `DYLD_INSERT_LIBRARIES` (`libwayland-mac.dylib`) on the **session compositor exec only**. Needs SIP fully disabled (`csrutil disable` in Recovery), Settings → Desktop → Enable (Path B), then **Replace now**. `csrutil enable --without debug` is not enough. WindowServer is unloaded. iland DRM/KMS/GBM present fullscreen Metal. Aqua is not drawn. `wwn-igetty` owns VTs. Still never `/dev/dri`. Details: [iland](@/docs/contributor/iland.md).
+- **Mode B** (Classic Desktop Replacement): prefix `DYLD_INSERT_LIBRARIES` (`libwayland-mac.dylib`) on the **session compositor exec only**. Needs SIP fully disabled (`csrutil disable` in Recovery), Settings → Desktop → Enable (Path B), then **Replace now**. `csrutil enable --without debug` is not enough. WindowServer is unloaded. iland DRM/KMS/GBM present fullscreen Metal. Aqua is not drawn. `iGetty` owns VTs. Still never `/dev/dri`. Details: [iland](@/docs/contributor/iland.md).
 
 Host chrome is AppKit (zoom, fullscreen, miniaturize). CSD and forced SSD are both legal.
 

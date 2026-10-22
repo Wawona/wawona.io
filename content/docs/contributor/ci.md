@@ -13,6 +13,7 @@ Work lands on **`development`**. **`master`** is the green/release branch.
 
 - **Gate: packages** (`nix.yml`)
 - **Gate: products** (`device-gate.yml`)
+- **Gate: WLCS conformance** (`wlcs.yml`): headless Wayland protocol conformance tests via `wawona-wlcs` and WLCS test runner.
 
 ## Ship (master only)
 

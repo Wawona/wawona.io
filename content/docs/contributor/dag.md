@@ -24,15 +24,15 @@ flowchart BT
 
 ## Wawona flake inputs today
 
-`wwn-toolchain`, `wwn-iland`, `wwn-kmscube`, `wwn-weston`, `wwn-zsh`, `wwn-ssh`, `wwn-waypipe`, `Wawona-Swinging-Bridge`, `wwn-coreutils`, `wwn-foot`, `wwn-fastfetch`, `wwn-phoon-rs`, `wwn-neovim`, `wwn-wasm`, `wwn-niri`, `wwn-vms`, `wwn-containers`, plus nixpkgs, rust-overlay, crate2nix, microvm, nix-appimage.
+`wwn-toolchain`, `wwn-iland`, `wwn-kmscube`, `wwn-weston`, `wwn-zsh`, `wwn-ssh`, `wwn-waypipe`, `Wawona-Swinging-Bridge`, `wwn-uutils-rs`, `wwn-foot`, `wwn-fastfetch`, `wwn-phoon-rs`, `wwn-neovim`, `wwn-relay`, `wwn-niri`, `Doorman`, `iGetty`, `iomfb-rs`, `iowatchdog-tools`, plus nixpkgs, rust-overlay, crate2nix, microvm, nix-appimage.
 
 L0 never imports L1+. Graphics keys (ANGLE, SwiftShader, MoltenVK, KosmicKrisp) live in L1. cairo/pango/pixman stay L0.
 
 ## Not flake-wired
 
-Retired `wwn-apt`, DE skeletons, [wwn-mcp](@/docs/contributor/wwn-mcp.md)
+Retired `wwn-apt`, `wwn-runtime` (consolidated into Wawona Relay), DE skeletons, [wwn-mcp](@/docs/contributor/wwn-mcp.md)
 (contributor Cursor RAG. Stdio install), this site. Do not document them as
-product inputs. Optional software = Wawona Runtime Wasm packages, not StoreKit
+product inputs. Optional software = Wawona Relay Wasm packages, not StoreKit
 `apt`.
 
 Never treat [repo.wawona.io](https://github.com/Wawona/repo.wawona.io) (jailbreak Procursus APT) as Wawona docs.
