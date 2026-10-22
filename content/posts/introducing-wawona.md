@@ -21,11 +21,11 @@ One backend owns protocol state, surfaces, and input. Host UI is Swift/SwiftUI, 
 
 ### Native graphics
 
-Userspace DRM/KMS/GBM is `wwn-iland`. Apple GPU targets use Metal (IOSurface). Android uses AHardwareBuffer. watchOS has no public Metal (GPU blocked). tvOS GPU is available: OpenGL ES via ANGLE and Vulkan via MoltenVK, both to Metal.
+Userspace DRM/KMS/GBM is `iLand`. Apple GPU targets use Metal (IOSurface). Android uses AHardwareBuffer. watchOS has no public Metal (GPU blocked). tvOS GPU is available: OpenGL ES via ANGLE and Vulkan via MoltenVK, both to Metal.
 
 ### Nix
 
-macOS, the iOS family, Android, and Linux each want their own SDK. Nix builds the Rust core and C libraries from sibling `wwn-*` inputs (`wwn-toolchain` substrate, `wwn-iland` graphics, Weston, Niri, waypipe).
+macOS, the iOS family, Android, and Linux each want their own SDK. Nix builds the Rust core and C libraries from sibling `wwn-*` inputs (`wwn-toolchain` substrate, `iLand` graphics, Weston, Niri, waypipe).
 
 ## Other platforms
 

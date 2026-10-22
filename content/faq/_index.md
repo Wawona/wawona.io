@@ -276,7 +276,7 @@ macOS **Classic Desktop Replacement** exists on the desktop-host build (SIP full
 </summary>
 <div class="faq-answer">
 
-Userspace DRM/KMS/GBM ([wwn-iland](https://github.com/Wawona/wwn-iland)). Compositors and clients see connector, CRTC, plane, GBM. Present is Metal or AHardwareBuffer. Wawona never opens `/dev/dri`. **Mode A** draws inside a Wawona window (Aqua stays). **Classic Desktop Replacement** (Mode B `libwayland-mac.dylib` + `iGetty`) unloads WindowServer and presents fullscreen Metal, so Aqua is not in that session. Not [Wawona Swinging Bridge](/docs/swinging-bridge/). See [iland](/docs/iland/).
+Userspace DRM/KMS/GBM ([iLand](https://github.com/Wawona/iLand)). Compositors and clients see connector, CRTC, plane, GBM. Present is Metal or AHardwareBuffer. Wawona never opens `/dev/dri`. **Mode A** draws inside a Wawona window (Aqua stays). **Classic Desktop Replacement** (Mode B `libwayland-mac.dylib` + `iGetty`) unloads WindowServer and presents fullscreen Metal, so Aqua is not in that session. Not [Wawona Swinging Bridge](/docs/swinging-bridge/). See [iland](/docs/iland/).
 
 </div>
 </details>
@@ -481,7 +481,7 @@ Alex Spaulding maintains Wawona as open source (MIT). Donations keep development
 </summary>
 <div class="faq-answer">
 
-Users do not need Nix to run a downloaded binary. Nix is how we cross-compile hermetically. Libraries live in flake inputs (`wwn-toolchain`, `wwn-iland`, …), not as 27 C libraries in this repo. Determinate Nix plus FlakeHub is the documented path. Local source builds and `nix run .#wawona-*` need it.
+Users do not need Nix to run a downloaded binary. Nix is how we cross-compile hermetically. Libraries live in flake inputs (`wwn-toolchain`, `iLand`, …), not as 27 C libraries in this repo. Determinate Nix plus FlakeHub is the documented path. Local source builds and `nix run .#wawona-*` need it.
 
 </div>
 </details>
@@ -599,7 +599,7 @@ Other attributes: `wawona-macos-desktop-host`, `wawona-watchos-app-sim`, `wawona
 </summary>
 <div class="faq-answer">
 
-Cold builds compile C/C++ substrate in `wwn-toolchain` and graphics in `wwn-iland`, plus the Rust compositor, Weston, and Niri. Package and crate counts in older posts are stale. After `determinate-nixd login`, the org FlakeHub cache hits many store paths. See [Nix](/docs/nix-build-system/).
+Cold builds compile C/C++ substrate in `wwn-toolchain` and graphics in `iLand`, plus the Rust compositor, Weston, and Niri. Package and crate counts in older posts are stale. After `determinate-nixd login`, the org FlakeHub cache hits many store paths. See [Nix](/docs/nix-build-system/).
 
 </div>
 </details>
@@ -613,7 +613,7 @@ Cold builds compile C/C++ substrate in `wwn-toolchain` and graphics in `wwn-ilan
 </summary>
 <div class="faq-answer">
 
-Plan tens of gigabytes for a full Apple-family plus Android tree (Xcode SDKs dominate). Linux-only is smaller. ANGLE and SwiftShader are owned by `wwn-iland` (L1), not the compositor repo. tvOS, watchOS, visionOS, and Linux are first-class targets alongside macOS, iOS, and Android.
+Plan tens of gigabytes for a full Apple-family plus Android tree (Xcode SDKs dominate). Linux-only is smaller. ANGLE and SwiftShader are owned by `iLand` (L1), not the compositor repo. tvOS, watchOS, visionOS, and Linux are first-class targets alongside macOS, iOS, and Android.
 
 </div>
 </details>

@@ -12,7 +12,7 @@ Canonical matrix for `zwp_linux_dmabuf_v1` on every Wawona target. Complements [
 
 **Goal:** one `wl_buffer` object, no CPU blit on GPU sessions, every client backend (EGL, Vulkan WSI, DRM/KMS, waypipe) and every present sink on that OS.
 
-This is **not** Linux kernel dma-buf on Apple/Android. `wwn-iland` emulates KMS/GBM over IOSurface (Apple) / AHardwareBuffer (Android). Never open `/dev/dri` or `/dev/kgsl`.
+This is **not** Linux kernel dma-buf on Apple/Android. `iLand` emulates KMS/GBM over IOSurface (Apple) / AHardwareBuffer (Android). Never open `/dev/dri` or `/dev/kgsl`.
 
 ## Modifier convention
 
@@ -38,7 +38,7 @@ Never advertise `DRM_FORMAT_MOD_LINEAR` on Apple or Android.
 
 macOS Mode A must stay green while Classic and TrollStore sinks land. IOMFB is Mode B only. See [Desktop](@/docs/user/desktop.md) and [iland](@/docs/contributor/iland.md).
 
-## Client backends (`wwn-iland`)
+## Client backends (`iLand`)
 
 | Backend | Done means |
 |---|---|

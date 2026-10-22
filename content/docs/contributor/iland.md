@@ -7,7 +7,7 @@ date = 2026-08-25
 
 +++
 
-[`wwn-iland`](https://github.com/Wawona/wwn-iland) is Wawona's **userspace DRM/KMS/GBM**. It emulates the Linux graphics objects a compositor and clients already know (connector, CRTC, plane, framebuffer, GBM bo) and presents them on the host through IOSurface + Metal (Apple) or AHardwareBuffer (Android).
+[`iLand`](https://github.com/Wawona/iLand) is Wawona's **userspace DRM/KMS/GBM**. It emulates the Linux graphics objects a compositor and clients already know (connector, CRTC, plane, framebuffer, GBM bo) and presents them on the host through IOSurface + Metal (Apple) or AHardwareBuffer (Android).
 
 That is a **runtime** substitution of the platform under the client. It is not a kernel driver, not a `/dev/dri` node, and not a video capture of Aqua.
 
@@ -67,7 +67,7 @@ After **Replace now** (and only then):
 1. **IOWatchdog Path B** (`iowatchdog-tools`) has a sticky Disable ACK. Unloading `watchdogd` without that panics on macOS 26. See [Desktop and LockScreen](@/docs/user/desktop.md).
 2. Apple **WindowServer is not running** for that session. There is no Aqua desktop to composite. Wawona does not render Finder, Dock, or the menu bar.
 3. **`iGetty`** owns virtual terminals (`igettyd`, Doorman session, F1-F9). The Desktop machine is a native weston or niri session, not a Linux VM.
-4. The **Mode B dylib** (`libwayland-mac.dylib` from `wwn-iland` `iland-baremetal` / `macos-baremetal.nix`) is prefixed on the **session compositor** command only. Never `export DYLD_INSERT_LIBRARIES` in the login shell (Apple `/bin/*` is `arm64e`; a global export kills `date` / `launchctl`).
+4. The **Mode B dylib** (`libwayland-mac.dylib` from `iLand` `iland-baremetal` / `macos-baremetal.nix`) is prefixed on the **session compositor** command only. Never `export DYLD_INSERT_LIBRARIES` in the login shell (Apple `/bin/*` is `arm64e`; a global export kills `date` / `launchctl`).
 5. That compositor talks **iland DRM**: weston `--backend=drm`, niri `NIRI_BACKEND=tty`. Clients allocate GBM/KMS as they would on Linux. iland implements the device. Present is a **fullscreen Metal** path (`framebufferd` over Mach), not a CAMetalLayer inside an Aqua window.
 
 So: Linux-shaped DRM/KMS/GBM API in userspace, mapped to a fullscreen Metal view, with WindowServer gone. Logout (or Ctrl+Option+Backspace) returns Aqua. Next login does not auto-engage.
@@ -78,13 +78,13 @@ KEEP_WS (`Wawona --mode-b-probe`) leaves WindowServer up on purpose. That is a p
 
 | Piece | Repo | Role |
 |-------|------|------|
-| Mode A archive | [`wwn-iland`](https://github.com/Wawona/wwn-iland) | `libiland_userland.a`, in-window Metal present |
-| Mode B dylib | `wwn-iland` `iland-baremetal` | `libwayland-mac.dylib`. Intercepts the DRM/GBM ABI; Mach → `framebufferd` |
+| Mode A archive | [`iLand`](https://github.com/Wawona/iLand) | `libiland_userland.a`, in-window Metal present |
+| Mode B dylib | `iLand` `iland-baremetal` | `libwayland-mac.dylib`. Intercepts the DRM/GBM ABI; Mach → `framebufferd` |
 | IOWatchdog Path B | [`iowatchdog-tools`](https://github.com/Wawona/iowatchdog-tools) | Sticky Disable ACK before unloading `watchdogd` |
 | VTs / getty | [`iGetty`](https://github.com/Wawona/iGetty) | `igettyd`, Doorman session, Ctrl+Option+F1-F9 |
 | SIP, Settings, Take Over | [`Wawona`](https://github.com/Wawona/Wawona) | `WWNSipStatus`, `WWNDesktopReplacementController`, `WWNWaypipeRunner` |
-| Session weston DRM | [`wwn-weston`](https://github.com/Wawona/wwn-weston) | `--backend=drm` over iland |
-| Session niri DRM | [`wwn-niri`](https://github.com/Wawona/wwn-niri) | `NIRI_BACKEND=tty` after Classic |
+| Session weston DRM | [`repo.wawona.io` deb catalog](https://repo.wawona.io/deb) | `--backend=drm` over iland. Weston ships as a deb; no separate fork repo. |
+| Session niri DRM | [`repo.wawona.io` deb catalog](https://repo.wawona.io/deb) | `NIRI_BACKEND=tty` after Classic. Niri ships as a deb; no separate fork repo. |
 
 Friends how-to, install sync, and safety forbids: [Desktop and LockScreen](@/docs/user/desktop.md). After you change this dylib or `iGetty`, run `nix run .#install` or open the new desktop-host app once. See [Compilation: install and updates](@/docs/contributor/compilation.md#install-and-updates-desktop-host).
 

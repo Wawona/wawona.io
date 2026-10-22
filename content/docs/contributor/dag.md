@@ -12,19 +12,19 @@ Canonical: [wwn-repo-dag.md](https://github.com/Wawona/Wawona/blob/development/d
 {% mermaid() %}
 flowchart BT
   toolchain["L0 wwn-toolchain"]
-  iland["L1 wwn-iland"]
-  kmscube["L2 wwn-kmscube"]
-  weston["L3 wwn-weston"]
-  peers["L3' waypipe ssh zsh niri vms wasm"]
+  iland["L1 iLand"]
+  catalog["catalog repo.wawona.io"]
+  peers["L3' waypipe ssh zsh relay"]
   app["L4 Wawona"]
-  toolchain --> iland --> kmscube --> weston --> app
+  toolchain --> iland --> app
+  toolchain --> catalog --> app
   toolchain --> peers --> app
   iland --> app
 {% end %}
 
 ## Wawona flake inputs today
 
-`wwn-toolchain`, `wwn-iland`, `wwn-kmscube`, `wwn-weston`, `wwn-zsh`, `wwn-ssh`, `wwn-waypipe`, `Wawona-Swinging-Bridge`, `wwn-uutils-rs`, `wwn-foot`, `wwn-fastfetch`, `wwn-phoon-rs`, `wwn-neovim`, `wwn-relay`, `wwn-niri`, `Doorman`, `iGetty`, `iomfb-rs`, `iowatchdog-tools`, plus nixpkgs, rust-overlay, crate2nix, microvm, nix-appimage.
+`wwn-toolchain`, `iLand`, `wwn-zsh`, `wwn-ssh`, `wwn-waypipe`, `Wawona-Swinging-Bridge`, `wwn-uutils-rs`, `wwn-relay`, `Doorman`, `iGetty`, `iomfb-rs`, `iowatchdog-tools`, plus nixpkgs, rust-overlay, crate2nix, microvm, nix-appimage. Weston and niri are not fork repos. They ship as debs from the [repo.wawona.io catalog](https://repo.wawona.io/deb).
 
 L0 never imports L1+. Graphics keys (ANGLE, SwiftShader, MoltenVK, KosmicKrisp) live in L1. cairo/pango/pixman stay L0.
 

@@ -7,7 +7,7 @@ date = 2026-08-13
 
 +++
 
-Library recipes do **not** live in `Wawona/dependencies/libs/`. Substrate is `wwn-toolchain`. GLES/Vulkan ICDs are `wwn-iland`. Wawona merges registries upward.
+Library recipes do **not** live in `Wawona/dependencies/libs/`. Substrate is `wwn-toolchain`. GLES/Vulkan ICDs are `iLand`. Wawona merges registries upward.
 
 ```
 Layer 3  App packaging (xcodegen, Gradle, AppImage)

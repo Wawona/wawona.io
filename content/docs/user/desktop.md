@@ -95,7 +95,7 @@ Classic Take Over runs `/Library/Application Support/Wawona/run-modeb.sh` and th
 - **Opening Wawona** (desktop-host) syncs the helper when it is missing or points at an older build.
 - **Settings → Desktop → Enable** also syncs before arming Path B.
 
-After you change the helper, the Mode B dylib (`wwn-iland`), or `igettyd` (`iGetty`), run `nix run .#install` or open the new build once. Install does **not** Take Over, unload WindowServer, or touch `watchdogd` beyond re-enabling a job that a prior session left disabled.
+After you change the helper, the Mode B dylib (`iLand`), or `igettyd` (`iGetty`), run `nix run .#install` or open the new build once. Install does **not** Take Over, unload WindowServer, or touch `watchdogd` beyond re-enabling a job that a prior session left disabled.
 
 If the helper still points at a previous `/nix/store/…-wawona-macos` path, Classic Take Over uses the old `igettyd` and old dylib. Wawona fails closed in that case: sync the helper, do not Take Over with a mixed store.
 
@@ -109,13 +109,13 @@ Never Take Over / unload `watchdogd` without sticky Path B ACK and live Disable.
 
 | Piece | Repo | Role |
 |-------|------|------|
-| Mode A archive | [`wwn-iland`](https://github.com/Wawona/wwn-iland) | `libiland_userland.a`, in-window present |
-| Mode B dylib | `wwn-iland` `iland-baremetal` | `libwayland-mac.dylib`, Mach IPC → `framebufferd` |
+| Mode A archive | [`iLand`](https://github.com/Wawona/iLand) | `libiland_userland.a`, in-window present |
+| Mode B dylib | `iLand` `iland-baremetal` | `libwayland-mac.dylib`, Mach IPC → `framebufferd` |
 | IOWatchdog Path B | [`iowatchdog-tools`](https://github.com/Wawona/iowatchdog-tools) | Sticky Disable ACK before unloading `watchdogd` |
 | VTs / getty | [`iGetty`](https://github.com/Wawona/iGetty) | `igettyd`, Doorman session, F1-F9 |
 | SIP + Settings + Take Over | [`Wawona`](https://github.com/Wawona/Wawona) | `WWNSipStatus`, `WWNDesktopReplacementController` |
-| Session weston DRM | [`wwn-weston`](https://github.com/Wawona/wwn-weston) | `--backend=drm` over iland |
-| Session niri DRM | [`wwn-niri`](https://github.com/Wawona/wwn-niri) | `NIRI_BACKEND=tty` after Classic |
+| Session weston DRM | [`repo.wawona.io` deb catalog](https://repo.wawona.io/deb) | `--backend=drm` over iland. Weston ships as a deb. No separate fork repo. |
+| Session niri DRM | [`repo.wawona.io` deb catalog](https://repo.wawona.io/deb) | `NIRI_BACKEND=tty` after Classic. Niri ships as a deb. No separate fork repo. |
 
 Userspace only. Virtual `/dev/dri` terminates in iland. Never a kernel module.
 

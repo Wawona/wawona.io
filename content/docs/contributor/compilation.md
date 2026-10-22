@@ -66,6 +66,6 @@ FlakeHub cache: `determinate-nixd login`. Details in the repo `docs/flakehub-cac
 
 `nix run .#install` from the Wawona repo installs the macOS app, LaunchAgents, **and** the Mode B helper + dylib + sudoers for this build. Administrator authorization once. No environment variables or extra CLI flags. Does **not** Take Over. Does **not** run `iowatchdog-tools disable`/`enable`. Does **not** attach lldb to `watchdogd`.
 
-Opening a desktop-host `Wawona.app` also syncs the helper when it is stale. Classic Desktop Replacement (not [Wawona Swinging Bridge](@/docs/user/swinging-bridge.md)) executes that helper. A new `nix build` of `wwn-iland` or `iGetty` does nothing for Take Over until you install or open the new app.
+Opening a desktop-host `Wawona.app` also syncs the helper when it is stale. Classic Desktop Replacement (not [Wawona Swinging Bridge](@/docs/user/swinging-bridge.md)) executes that helper. A new `nix build` of `iLand` or `iGetty` does nothing for Take Over until you install or open the new app.
 
 User-facing notes: [Desktop and LockScreen](@/docs/user/desktop.md#install-and-updates-helper-dylib).
