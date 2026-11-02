@@ -19,8 +19,16 @@
 {% set_global donation_progress_pct = (donation_raised_usd * 100 / donation_goal_usd) | round(precision=1) %}
 {% endif %}
 
+{# First-paint docs layout so Apollo --page-width remaps before JS. #}
+{% set docs_layout_class = "" %}
+{% if current_path == "/docs" or current_path == "/docs/" %}
+{% set docs_layout_class = " layout-docs-hub" %}
+{% elif current_path is starting_with("/docs/") %}
+{% set docs_layout_class = " layout-docs" %}
+{% endif %}
+
 <!DOCTYPE html>
-<html lang="en" class="dark{% if current_path is starting_with("/donate") %} on-donate{% endif %}">
+<html lang="en" class="dark{% if current_path is starting_with("/donate") %} on-donate{% endif %}{{ docs_layout_class }}">
 
 {% include "partials/header.html" %}
 
@@ -335,15 +343,26 @@
             slot.innerHTML = html || '';
         }
 
-        /* Class-based layout beats fragile :has() after SPA swaps (hub → article). */
+        /* Class-based layout beats fragile :has() after SPA swaps (hub → article).
+           Toggle atomically so --page-width never briefly drops to the Apollo 920px default. */
         function syncPageLayout() {
             const spa = document.getElementById('spa-main');
             const root = document.documentElement;
-            root.classList.remove('layout-home', 'layout-docs', 'layout-docs-hub');
-            if (!spa) return;
-            if (spa.querySelector('.lp-hero')) root.classList.add('layout-home');
-            else if (spa.querySelector('.docs-shell')) root.classList.add('layout-docs');
-            else if (spa.querySelector('.docs-layout-hub')) root.classList.add('layout-docs-hub');
+            let next = '';
+            if (spa) {
+                if (spa.querySelector('.lp-hero')) next = 'layout-home';
+                else if (spa.querySelector('.docs-shell')) next = 'layout-docs';
+                else if (spa.querySelector('.docs-layout-hub')) next = 'layout-docs-hub';
+            }
+            if (!next) {
+                const pathname = window.location.pathname || '';
+                const normalized = pathname.replace(/\/$/, '') || '/';
+                if (normalized === '/docs') next = 'layout-docs-hub';
+                else if (pathname.indexOf('/docs/') === 0 || normalized.indexOf('/docs/') === 0) next = 'layout-docs';
+            }
+            root.classList.toggle('layout-home', next === 'layout-home');
+            root.classList.toggle('layout-docs', next === 'layout-docs');
+            root.classList.toggle('layout-docs-hub', next === 'layout-docs-hub');
         }
         window.syncPageLayout = syncPageLayout;
 

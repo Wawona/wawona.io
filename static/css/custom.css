@@ -152,7 +152,10 @@ html {
    beside sticky .site-top without making html a scroll container (sticky). */
 body:has(.lp-hero),
 html.layout-home body,
-html.layout-docs body {
+html.layout-docs body,
+html.layout-docs-hub body,
+body:has(.docs-shell),
+body:has(.docs-layout-hub) {
     overflow-x: clip;
 }
 
@@ -343,8 +346,15 @@ html.light .not-found-window {
     scroll-margin-top: var(--site-chrome-offset);
 }
 
-/* Do not set max-width here. Apollo's body .content uses --page-width (920px).
-   Docs/home full-bleed is opt-in via html.layout-docs / :has(.docs-shell) / lp-hero. */
+/* Docs remap Apollo --page-width so nav, banner, footer, and .content share one measure. */
+html.layout-docs,
+html.layout-docs-hub,
+html:has(.docs-shell),
+html:has(.docs-layout-hub) {
+    --docs-page-width: 1120px;
+    --page-width: var(--docs-page-width);
+}
+
 /* ===== THEME-AWARE NAVIGATION LOGO ===== */
 
 /* Default state (before JS runs): show the light logo */
@@ -774,12 +784,33 @@ nav .nav-search .nav-search-glass {
     line-height: 1.5;
 }
 
-/* Docs hub + articles share one content measure (overview is the reference). */
+/* Docs hub + articles: same centered measure as chrome via --docs-page-width. */
 html.layout-docs-hub body > .content,
 html.layout-docs body > .content,
 .content:has(.docs-layout-hub),
 .content:has(.docs-shell) {
-    max-width: 1080px;
+    width: var(--docs-page-width);
+    max-width: var(--docs-page-width);
+    flex: 0 1 auto;
+    min-width: 0;
+    margin-inline: auto;
+    box-sizing: border-box;
+}
+
+/* Explicit chrome max-width (class + :has) so SPA / no-JS still align. */
+html.layout-docs .site-top nav,
+html.layout-docs .donate-banner,
+html.layout-docs .site-footer,
+html.layout-docs-hub .site-top nav,
+html.layout-docs-hub .donate-banner,
+html.layout-docs-hub .site-footer,
+body:has(.docs-shell) .site-top nav,
+body:has(.docs-shell) .donate-banner,
+body:has(.docs-shell) .site-footer,
+body:has(.docs-layout-hub) .site-top nav,
+body:has(.docs-layout-hub) .donate-banner,
+body:has(.docs-layout-hub) .site-footer {
+    max-width: var(--docs-page-width);
 }
 
 .docs-layout {
@@ -794,9 +825,15 @@ html.layout-docs body > .content,
     grid-template-columns: minmax(0, 1fr);
 }
 
-/* Hide Apollo side slots on docs articles; shell owns nav/TOC. */
+/* Hide Apollo side slots on docs; shell owns nav/TOC. */
 html.layout-docs body > .left-content,
-html.layout-docs body > .right-content {
+html.layout-docs body > .right-content,
+html.layout-docs-hub body > .left-content,
+html.layout-docs-hub body > .right-content,
+body:has(.docs-shell) > .left-content,
+body:has(.docs-shell) > .right-content,
+body:has(.docs-layout-hub) > .left-content,
+body:has(.docs-layout-hub) > .right-content {
     display: none !important;
     flex: 0 0 0 !important;
     width: 0 !important;
@@ -804,6 +841,17 @@ html.layout-docs body > .right-content {
     padding: 0 !important;
     margin: 0 !important;
     overflow: hidden !important;
+}
+
+/* Protocol tables: real table layout; scroll inside the article column. */
+.docs-main .body {
+    overflow-x: auto;
+}
+
+.docs-main table {
+    display: table;
+    width: max-content;
+    min-width: 100%;
 }
 
 .docs-shell {
@@ -1235,7 +1283,7 @@ main .docs-card,
 }
 
 @media (max-width: 1199px) {
-    /* Book menu + inline TOC; same 1080px measure as the overview. */
+    /* Book menu + inline TOC; same docs measure as the overview. */
     .docs-shell,
     .docs-shell:not(.has-toc) {
         position: relative;
@@ -1342,6 +1390,22 @@ main .docs-card,
 }
 
 @media (max-width: 767px) {
+    html.layout-docs,
+    html.layout-docs-hub,
+    html:has(.docs-shell),
+    html:has(.docs-layout-hub) {
+        --docs-page-width: 100%;
+        --page-width: 100%;
+    }
+
+    html.layout-docs-hub body > .content,
+    html.layout-docs body > .content,
+    .content:has(.docs-layout-hub),
+    .content:has(.docs-shell) {
+        width: 100%;
+        max-width: 100%;
+    }
+
     .docs-layout {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
